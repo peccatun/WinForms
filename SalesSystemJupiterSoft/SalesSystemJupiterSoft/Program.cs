@@ -20,6 +20,7 @@ namespace SalesSystemJupiterSoft
         {
             var services = new ServiceCollection();
             services.AddTransient<IArticleService,ArticleService>();
+            services.AddTransient<ISalesService, SalesService>();
             ServiceProvider = services.BuildServiceProvider();
         }
 

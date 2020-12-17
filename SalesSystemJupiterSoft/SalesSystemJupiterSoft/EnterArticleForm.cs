@@ -17,7 +17,7 @@ namespace SalesSystemJupiterSoft
         public EnterArticleForm()
         {
             InitializeComponent();
-            this.articleService = (IArticleService)Program.ServiceProvider.GetService(typeof(IArticleService));
+            articleService = (IArticleService)Program.ServiceProvider.GetService(typeof(IArticleService));
         }
 
         private void BackToMenuFormBtn_Click(object sender, EventArgs e)
