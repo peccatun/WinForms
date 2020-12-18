@@ -37,5 +37,10 @@ namespace SalesSystemJupiterSoft
             salesReferenceForm.Tag = this;
             salesReferenceForm.Show(this);
         }
+
+        private void ExitBtn_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

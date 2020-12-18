@@ -32,6 +32,7 @@
             this.EnterArticleBtn = new System.Windows.Forms.Button();
             this.MakeSaleBtn = new System.Windows.Forms.Button();
             this.SalesReferenceBtn = new System.Windows.Forms.Button();
+            this.ExitBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // MenuTextLabel
@@ -73,11 +74,23 @@
             this.SalesReferenceBtn.UseVisualStyleBackColor = true;
             this.SalesReferenceBtn.Click += new System.EventHandler(this.SalesReferenceBtn_Click);
             // 
+            // ExitBtn
+            // 
+            this.ExitBtn.ForeColor = System.Drawing.Color.Maroon;
+            this.ExitBtn.Location = new System.Drawing.Point(262, 311);
+            this.ExitBtn.Name = "ExitBtn";
+            this.ExitBtn.Size = new System.Drawing.Size(180, 60);
+            this.ExitBtn.TabIndex = 4;
+            this.ExitBtn.Text = "Exit";
+            this.ExitBtn.UseVisualStyleBackColor = true;
+            this.ExitBtn.Click += new System.EventHandler(this.ExitBtn_Click);
+            // 
             // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(764, 451);
+            this.Controls.Add(this.ExitBtn);
             this.Controls.Add(this.SalesReferenceBtn);
             this.Controls.Add(this.MakeSaleBtn);
             this.Controls.Add(this.EnterArticleBtn);
@@ -94,6 +107,7 @@
         private System.Windows.Forms.Button EnterArticleBtn;
         private System.Windows.Forms.Button MakeSaleBtn;
         private System.Windows.Forms.Button SalesReferenceBtn;
+        private System.Windows.Forms.Button ExitBtn;
     }
 }
 

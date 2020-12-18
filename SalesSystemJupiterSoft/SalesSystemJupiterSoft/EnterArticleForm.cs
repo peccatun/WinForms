@@ -33,6 +33,8 @@ namespace SalesSystemJupiterSoft
                     "Article name field is empty",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+
+                return;
             }
 
             if (ArticleNameTextBox.TextLength > 50)
@@ -41,6 +43,18 @@ namespace SalesSystemJupiterSoft
                     ,"Article name is too long"
                     ,MessageBoxButtons.OK
                     ,MessageBoxIcon.Error);
+
+                return;
+            }
+
+            if (string.IsNullOrEmpty(ArticlePriceTextBox.Text))
+            {
+                MessageBox.Show("You have not entered article price",
+                    "Article price field is empty",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return;
             }
 
             if (decimal.TryParse(ArticlePriceTextBox.Text, out decimal articlePrice))
@@ -51,6 +65,8 @@ namespace SalesSystemJupiterSoft
                         "Invalid article price",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
+
+                    return;
                 }
             }
             else
@@ -58,8 +74,9 @@ namespace SalesSystemJupiterSoft
                 MessageBox.Show("Article price must be a number" ,
                     "You have not entered a number",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                    );
+                    MessageBoxIcon.Error);
+
+                return;
             }
 
             if (ArticleCodeTextBox.TextLength > 10)
@@ -68,6 +85,8 @@ namespace SalesSystemJupiterSoft
                     "Invalid article code",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+
+                return;
             }
 
             if (string.IsNullOrEmpty(ArticleCodeTextBox.Text))
@@ -76,6 +95,8 @@ namespace SalesSystemJupiterSoft
                     "Invalid article code",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+
+                return;
             }
 
             string articleName = ArticleNameTextBox.Text;
