@@ -35,6 +35,9 @@
             this.ArticleQuantityTextBox = new System.Windows.Forms.TextBox();
             this.QuantityLabel = new System.Windows.Forms.Label();
             this.AddSaleBtn = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // BackToMenuFromSalesBtn
@@ -103,6 +106,15 @@
             this.AddSaleBtn.UseVisualStyleBackColor = true;
             this.AddSaleBtn.Click += new System.EventHandler(this.AddSaleBtn_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(33, 150);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(700, 230);
+            this.dataGridView1.TabIndex = 0;
+            // 
             // MakeASaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -115,9 +127,11 @@
             this.Controls.Add(this.ArticleComboBox);
             this.Controls.Add(this.MakeASaleLabel);
             this.Controls.Add(this.BackToMenuFromSalesBtn);
+            this.Controls.Add(this.dataGridView1);
             this.Name = "MakeASaleForm";
             this.Text = "MakeASaleForm";
             this.Load += new System.EventHandler(this.MakeASaleForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,5 +146,7 @@
         private System.Windows.Forms.TextBox ArticleQuantityTextBox;
         private System.Windows.Forms.Label QuantityLabel;
         private System.Windows.Forms.Button AddSaleBtn;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
