@@ -3,6 +3,7 @@ using SalesSystemJupiterSoft.ViewModels.Sales;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace SalesSystemJupiterSoft.Services
 {
@@ -26,7 +27,7 @@ namespace SalesSystemJupiterSoft.Services
                 fbQuery.AppendLine("JOIN Article as a ON s.articleid = a.id");
                 fbQuery.AppendLine("ORDER BY s.solddate DESC");
 
-                using (FbCommand fbCommand = new FbCommand(fbQuery.ToString(),fbConnection))
+                using (FbCommand fbCommand = new FbCommand(fbQuery.ToString(), fbConnection))
                 {
                     using (var reader = fbCommand.ExecuteReader())
                     {
@@ -50,6 +51,52 @@ namespace SalesSystemJupiterSoft.Services
             return salesDetails;
         }
 
+        public IEnumerable<DisplaySalesDetailsViewModel> GetSalesReference(DateTime fromDate, DateTime toDate)
+        {
+            List<DisplaySalesDetailsViewModel> sales = new List<DisplaySalesDetailsViewModel>();
+
+            using (FbConnection fbConnection = new FbConnection(GlobalConstants.FireBirdConnectionString))
+            {
+                fbConnection.Open();
+
+
+                StringBuilder fbQuery = new StringBuilder();
+                fbQuery.AppendLine("SELECT");
+                fbQuery.AppendLine("a.name,");
+                fbQuery.AppendLine("s.soldquantity,");
+                fbQuery.AppendLine("a.price,");
+                fbQuery.AppendLine("s.sumprice,");
+                fbQuery.AppendLine("s.solddate ");
+                fbQuery.AppendLine("FROM Sales as s");
+                fbQuery.AppendLine("JOIN Article as a ON s.articleid = a.id");
+                fbQuery.AppendLine("ORDER BY s.solddate DESC");
+
+                using (FbCommand fbCommand = new FbCommand(fbQuery.ToString(), fbConnection))
+                {
+                    using (var reader = fbCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DisplaySalesDetailsViewModel saleDetail = new DisplaySalesDetailsViewModel
+                            {
+                                SoldItemName = (string)reader["Name"],
+                                SoldQuantity = (int)reader["SoldQuantity"],
+                                SoldItemPrice = (decimal)reader["Price"],
+                                SoldItemSumPrice = (decimal)reader["SumPrice"],
+                                SoldDate = (DateTime)reader["SoldDate"]
+                            };
+
+                            sales.Add(saleDetail);
+                        }
+                    }
+                }
+            }
+
+            IEnumerable<DisplaySalesDetailsViewModel> validSales = this.ExtractValidDates(sales,fromDate,toDate);
+
+            return validSales;
+        }
+
         public void MakeSale(int articleId, int quantity)
         {
             decimal articlePrice = this.GetArticlePrice(articleId);
@@ -64,11 +111,19 @@ namespace SalesSystemJupiterSoft.Services
                 fbQuery.AppendLine("VALUES");
                 fbQuery.AppendLine($"('{soldDate}',{quantity},{sumPrice},{articleId})");
 
-                using (FbCommand fbCommand = new FbCommand(fbQuery.ToString(),fbConnection))
+                using (FbCommand fbCommand = new FbCommand(fbQuery.ToString(), fbConnection))
                 {
                     fbCommand.ExecuteNonQuery();
                 }
             }
+        }
+
+        private IEnumerable<DisplaySalesDetailsViewModel> ExtractValidDates(IEnumerable<DisplaySalesDetailsViewModel> sales, DateTime fromDate, DateTime toDate)
+        {
+            List<DisplaySalesDetailsViewModel> validSales = sales.Where(s => s.SoldDate.Date >= fromDate.Date && s.SoldDate.Date <= toDate.Date)
+                .ToList();
+
+            return validSales;
         }
 
         private decimal GetArticlePrice(int articleId)
@@ -80,7 +135,7 @@ namespace SalesSystemJupiterSoft.Services
                 fbQuery.AppendLine("SELECT a.Price FROM Article as a");
                 fbQuery.AppendLine($"WHERE a.Id = {articleId}");
 
-                using (FbCommand fbCommand = new FbCommand(fbQuery.ToString(),fbConnection))
+                using (FbCommand fbCommand = new FbCommand(fbQuery.ToString(), fbConnection))
                 {
                     decimal price = (decimal)fbCommand.ExecuteScalar();
 
@@ -88,5 +143,6 @@ namespace SalesSystemJupiterSoft.Services
                 }
             }
         }
+
     }
 }
