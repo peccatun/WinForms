@@ -16,7 +16,7 @@ namespace SalesSystemJupiterSoft.Services
                 StringBuilder fbQuery = new StringBuilder();
                 fbQuery.AppendLine("INSERT INTO Article(Name,Price,Code)");
                 fbQuery.AppendLine("VALUES");
-                fbQuery.Append($"('{articleName}',{ articlePrice},'{articleCode}');");
+                fbQuery.Append($"('{articleName}',{articlePrice},'{articleCode}');");
 
                 FbCommand fbCommand = new FbCommand(fbQuery.ToString(), fbConnection);
 

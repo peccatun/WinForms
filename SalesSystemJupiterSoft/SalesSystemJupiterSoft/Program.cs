@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
 using SalesSystemJupiterSoft.Services;
+using SalesSystemJupiterSoft.DatabaseInitializer;
 
 namespace SalesSystemJupiterSoft
 {
@@ -31,6 +32,7 @@ namespace SalesSystemJupiterSoft
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             ConfigureServices();
+            DatabaseInitializer.DatabaseInitializer.CreateInitialDatabase();
             Application.Run(new MenuForm());
         }
     }
