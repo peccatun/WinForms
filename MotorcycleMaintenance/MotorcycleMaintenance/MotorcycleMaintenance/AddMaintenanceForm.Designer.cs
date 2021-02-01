@@ -31,16 +31,17 @@ namespace MotorcycleMaintenance
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ChangeDateDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.MakeTextBox = new System.Windows.Forms.TextBox();
+            this.PriceTextBox = new System.Windows.Forms.TextBox();
+            this.ChangeDateLabel = new System.Windows.Forms.Label();
+            this.MakeLabel = new System.Windows.Forms.Label();
+            this.PriceLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.MaintenanceBox = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.MantainanceBox = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.PriceLabel = new System.Windows.Forms.Label();
-            this.MakeLabel = new System.Windows.Forms.Label();
-            this.ChangeDateLabel = new System.Windows.Forms.Label();
-            this.PriceTextBox = new System.Windows.Forms.TextBox();
-            this.MakeTextBox = new System.Windows.Forms.TextBox();
-            this.ChangeDateDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.AddMaintenanceBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +60,7 @@ namespace MotorcycleMaintenance
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Gainsboro;
+            this.tabPage1.Controls.Add(this.AddMaintenanceBtn);
             this.tabPage1.Controls.Add(this.ChangeDateDatePicker);
             this.tabPage1.Controls.Add(this.MakeTextBox);
             this.tabPage1.Controls.Add(this.PriceTextBox);
@@ -66,7 +68,7 @@ namespace MotorcycleMaintenance
             this.tabPage1.Controls.Add(this.MakeLabel);
             this.tabPage1.Controls.Add(this.PriceLabel);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.MantainanceBox);
+            this.tabPage1.Controls.Add(this.MaintenanceBox);
             this.tabPage1.ForeColor = System.Drawing.SystemColors.Control;
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -74,6 +76,80 @@ namespace MotorcycleMaintenance
             this.tabPage1.Size = new System.Drawing.Size(502, 422);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Mantainance";
+            // 
+            // ChangeDateDatePicker
+            // 
+            this.ChangeDateDatePicker.Location = new System.Drawing.Point(6, 226);
+            this.ChangeDateDatePicker.Name = "ChangeDateDatePicker";
+            this.ChangeDateDatePicker.Size = new System.Drawing.Size(200, 20);
+            this.ChangeDateDatePicker.TabIndex = 7;
+            // 
+            // MakeTextBox
+            // 
+            this.MakeTextBox.Location = new System.Drawing.Point(6, 156);
+            this.MakeTextBox.Name = "MakeTextBox";
+            this.MakeTextBox.Size = new System.Drawing.Size(184, 20);
+            this.MakeTextBox.TabIndex = 6;
+            // 
+            // PriceTextBox
+            // 
+            this.PriceTextBox.Location = new System.Drawing.Point(6, 99);
+            this.PriceTextBox.Name = "PriceTextBox";
+            this.PriceTextBox.Size = new System.Drawing.Size(104, 20);
+            this.PriceTextBox.TabIndex = 5;
+            // 
+            // ChangeDateLabel
+            // 
+            this.ChangeDateLabel.AutoSize = true;
+            this.ChangeDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChangeDateLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ChangeDateLabel.Location = new System.Drawing.Point(10, 193);
+            this.ChangeDateLabel.Name = "ChangeDateLabel";
+            this.ChangeDateLabel.Size = new System.Drawing.Size(85, 16);
+            this.ChangeDateLabel.TabIndex = 4;
+            this.ChangeDateLabel.Text = "Change date";
+            // 
+            // MakeLabel
+            // 
+            this.MakeLabel.AutoSize = true;
+            this.MakeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MakeLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.MakeLabel.Location = new System.Drawing.Point(10, 137);
+            this.MakeLabel.Name = "MakeLabel";
+            this.MakeLabel.Size = new System.Drawing.Size(42, 16);
+            this.MakeLabel.TabIndex = 3;
+            this.MakeLabel.Text = "Make";
+            // 
+            // PriceLabel
+            // 
+            this.PriceLabel.AutoSize = true;
+            this.PriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PriceLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.PriceLabel.Location = new System.Drawing.Point(10, 80);
+            this.PriceLabel.Name = "PriceLabel";
+            this.PriceLabel.Size = new System.Drawing.Size(39, 16);
+            this.PriceLabel.TabIndex = 2;
+            this.PriceLabel.Text = "Price";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Gainsboro;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label1.Location = new System.Drawing.Point(25, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 16);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Mantainance";
+            // 
+            // MaintenanceBox
+            // 
+            this.MaintenanceBox.FormattingEnabled = true;
+            this.MaintenanceBox.Location = new System.Drawing.Point(6, 25);
+            this.MaintenanceBox.Name = "MaintenanceBox";
+            this.MaintenanceBox.Size = new System.Drawing.Size(184, 21);
+            this.MaintenanceBox.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -95,79 +171,17 @@ namespace MotorcycleMaintenance
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             // 
-            // MantainanceBox
+            // AddMaintenanceBtn
             // 
-            this.MantainanceBox.FormattingEnabled = true;
-            this.MantainanceBox.Location = new System.Drawing.Point(6, 25);
-            this.MantainanceBox.Name = "MantainanceBox";
-            this.MantainanceBox.Size = new System.Drawing.Size(184, 21);
-            this.MantainanceBox.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Gainsboro;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(25, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 16);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Mantainance";
-            // 
-            // PriceLabel
-            // 
-            this.PriceLabel.AutoSize = true;
-            this.PriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PriceLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.PriceLabel.Location = new System.Drawing.Point(10, 80);
-            this.PriceLabel.Name = "PriceLabel";
-            this.PriceLabel.Size = new System.Drawing.Size(39, 16);
-            this.PriceLabel.TabIndex = 2;
-            this.PriceLabel.Text = "Price";
-            // 
-            // MakeLabel
-            // 
-            this.MakeLabel.AutoSize = true;
-            this.MakeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MakeLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.MakeLabel.Location = new System.Drawing.Point(10, 137);
-            this.MakeLabel.Name = "MakeLabel";
-            this.MakeLabel.Size = new System.Drawing.Size(42, 16);
-            this.MakeLabel.TabIndex = 3;
-            this.MakeLabel.Text = "Make";
-            // 
-            // ChangeDateLabel
-            // 
-            this.ChangeDateLabel.AutoSize = true;
-            this.ChangeDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChangeDateLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ChangeDateLabel.Location = new System.Drawing.Point(10, 193);
-            this.ChangeDateLabel.Name = "ChangeDateLabel";
-            this.ChangeDateLabel.Size = new System.Drawing.Size(85, 16);
-            this.ChangeDateLabel.TabIndex = 4;
-            this.ChangeDateLabel.Text = "Change date";
-            // 
-            // PriceTextBox
-            // 
-            this.PriceTextBox.Location = new System.Drawing.Point(6, 99);
-            this.PriceTextBox.Name = "PriceTextBox";
-            this.PriceTextBox.Size = new System.Drawing.Size(104, 20);
-            this.PriceTextBox.TabIndex = 5;
-            // 
-            // MakeTextBox
-            // 
-            this.MakeTextBox.Location = new System.Drawing.Point(6, 156);
-            this.MakeTextBox.Name = "MakeTextBox";
-            this.MakeTextBox.Size = new System.Drawing.Size(184, 20);
-            this.MakeTextBox.TabIndex = 6;
-            // 
-            // ChangeDateDatePicker
-            // 
-            this.ChangeDateDatePicker.Location = new System.Drawing.Point(6, 226);
-            this.ChangeDateDatePicker.Name = "ChangeDateDatePicker";
-            this.ChangeDateDatePicker.Size = new System.Drawing.Size(200, 20);
-            this.ChangeDateDatePicker.TabIndex = 7;
+            this.AddMaintenanceBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddMaintenanceBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.AddMaintenanceBtn.Location = new System.Drawing.Point(40, 271);
+            this.AddMaintenanceBtn.Name = "AddMaintenanceBtn";
+            this.AddMaintenanceBtn.Size = new System.Drawing.Size(100, 43);
+            this.AddMaintenanceBtn.TabIndex = 8;
+            this.AddMaintenanceBtn.Text = "Add Maintenance";
+            this.AddMaintenanceBtn.UseVisualStyleBackColor = true;
+            this.AddMaintenanceBtn.Click += new System.EventHandler(this.AddMaintenanceBtn_Click);
             // 
             // AddMaintenanceForm
             // 
@@ -198,6 +212,7 @@ namespace MotorcycleMaintenance
         private System.Windows.Forms.Label MakeLabel;
         private System.Windows.Forms.Label PriceLabel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox MantainanceBox;
+        private System.Windows.Forms.ComboBox MaintenanceBox;
+        private System.Windows.Forms.Button AddMaintenanceBtn;
     }
 }

@@ -87,7 +87,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Contracts\IBatteryService.cs" />
+    <Compile Include="Services\Contracts\IBrakefluidService.cs" />
+    <Compile Include="Services\Contracts\IClutchService.cs" />
+    <Compile Include="Services\Contracts\ICoolantService.cs" />
+    <Compile Include="Services\Contracts\IFrontBrakesService.cs" />
     <Compile Include="Services\Contracts\IMotorcycleService.cs" />
+    <Compile Include="Services\Contracts\IOilFilterService.cs" />
+    <Compile Include="Services\Contracts\IOilService.cs" />
+    <Compile Include="Services\Contracts\IRearBrakeService.cs" />
+    <Compile Include="Services\Contracts\ITiresService.cs" />
     <Compile Include="Services\Contracts\IUserService.cs" />
     <Compile Include="Services\MotorcycleService.cs" />
     <Compile Include="Services\UserService.cs" />

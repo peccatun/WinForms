@@ -23,18 +23,51 @@ namespace MotorcycleMaintenance
             AddMantainanceBoxItems();
         }
 
+
+
         private void AddMantainanceBoxItems()
         {
-            MantainanceBox.Items.Add(GlobalConstants.MantainanceType.Battery);
-            MantainanceBox.Items.Add(GlobalConstants.MantainanceType.Brakefluid);
-            MantainanceBox.Items.Add(GlobalConstants.MantainanceType.Clutch);
-            MantainanceBox.Items.Add(GlobalConstants.MantainanceType.Coolant);
-            MantainanceBox.Items.Add(GlobalConstants.MantainanceType.FrontBrakes);
-            MantainanceBox.Items.Add(GlobalConstants.MantainanceType.Oil);
-            MantainanceBox.Items.Add(GlobalConstants.MantainanceType.RearBrake);
-            MantainanceBox.Items.Add(GlobalConstants.MantainanceType.Tires);
-            MantainanceBox.Items.Add(GlobalConstants.MantainanceType.OilFilter);
+            MaintenanceBox.Items.Add(GlobalConstants.MantainanceType.Battery);
+            MaintenanceBox.Items.Add(GlobalConstants.MantainanceType.Brakefluid);
+            MaintenanceBox.Items.Add(GlobalConstants.MantainanceType.Clutch);
+            MaintenanceBox.Items.Add(GlobalConstants.MantainanceType.Coolant);
+            MaintenanceBox.Items.Add(GlobalConstants.MantainanceType.FrontBrakes);
+            MaintenanceBox.Items.Add(GlobalConstants.MantainanceType.Oil);
+            MaintenanceBox.Items.Add(GlobalConstants.MantainanceType.RearBrake);
+            MaintenanceBox.Items.Add(GlobalConstants.MantainanceType.Tires);
+            MaintenanceBox.Items.Add(GlobalConstants.MantainanceType.OilFilter);
+        }
+
+        private void AddMaintenanceBtn_Click(object sender, EventArgs e)
+        {
+
+            string selectedMaintenance = MaintenanceBox.SelectedItem.ToString();
 
         }
+
+        private void CreateNewBattery()
+        {
+            if (!IsMoney(PriceTextBox.Text))
+            {
+                MessageBox.Show("Price must be a number",GlobalConstants.MessageBoxTopInfo);
+                return;
+            }
+
+        }
+
+        private void CreateNewMaintenance(string maintenanceType)
+        {
+            if (maintenanceType == GlobalConstants.MantainanceType.Battery)
+            {
+                CreateNewBattery();
+            }
+        }
+
+        private bool IsMoney(string number)
+        {
+            return double.TryParse(number, out double result);
+        }
+
+
     }
 }
