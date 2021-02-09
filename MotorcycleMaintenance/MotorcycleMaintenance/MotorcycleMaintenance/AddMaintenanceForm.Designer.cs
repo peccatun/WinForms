@@ -31,6 +31,7 @@ namespace MotorcycleMaintenance
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.AddMaintenanceBtn = new System.Windows.Forms.Button();
             this.ChangeDateDatePicker = new System.Windows.Forms.DateTimePicker();
             this.MakeTextBox = new System.Windows.Forms.TextBox();
             this.PriceTextBox = new System.Windows.Forms.TextBox();
@@ -41,7 +42,8 @@ namespace MotorcycleMaintenance
             this.MaintenanceBox = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.AddMaintenanceBtn = new System.Windows.Forms.Button();
+            this.KiloetersOnChangeLabel = new System.Windows.Forms.Label();
+            this.KilometersOnChangeTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -60,6 +62,8 @@ namespace MotorcycleMaintenance
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Gainsboro;
+            this.tabPage1.Controls.Add(this.KilometersOnChangeTextBox);
+            this.tabPage1.Controls.Add(this.KiloetersOnChangeLabel);
             this.tabPage1.Controls.Add(this.AddMaintenanceBtn);
             this.tabPage1.Controls.Add(this.ChangeDateDatePicker);
             this.tabPage1.Controls.Add(this.MakeTextBox);
@@ -77,23 +81,35 @@ namespace MotorcycleMaintenance
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Mantainance";
             // 
+            // AddMaintenanceBtn
+            // 
+            this.AddMaintenanceBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddMaintenanceBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.AddMaintenanceBtn.Location = new System.Drawing.Point(40, 300);
+            this.AddMaintenanceBtn.Name = "AddMaintenanceBtn";
+            this.AddMaintenanceBtn.Size = new System.Drawing.Size(100, 43);
+            this.AddMaintenanceBtn.TabIndex = 8;
+            this.AddMaintenanceBtn.Text = "Add Maintenance";
+            this.AddMaintenanceBtn.UseVisualStyleBackColor = true;
+            this.AddMaintenanceBtn.Click += new System.EventHandler(this.AddMaintenanceBtn_Click);
+            // 
             // ChangeDateDatePicker
             // 
-            this.ChangeDateDatePicker.Location = new System.Drawing.Point(6, 226);
+            this.ChangeDateDatePicker.Location = new System.Drawing.Point(6, 256);
             this.ChangeDateDatePicker.Name = "ChangeDateDatePicker";
             this.ChangeDateDatePicker.Size = new System.Drawing.Size(200, 20);
             this.ChangeDateDatePicker.TabIndex = 7;
             // 
             // MakeTextBox
             // 
-            this.MakeTextBox.Location = new System.Drawing.Point(6, 156);
+            this.MakeTextBox.Location = new System.Drawing.Point(6, 142);
             this.MakeTextBox.Name = "MakeTextBox";
             this.MakeTextBox.Size = new System.Drawing.Size(184, 20);
             this.MakeTextBox.TabIndex = 6;
             // 
             // PriceTextBox
             // 
-            this.PriceTextBox.Location = new System.Drawing.Point(6, 99);
+            this.PriceTextBox.Location = new System.Drawing.Point(6, 91);
             this.PriceTextBox.Name = "PriceTextBox";
             this.PriceTextBox.Size = new System.Drawing.Size(104, 20);
             this.PriceTextBox.TabIndex = 5;
@@ -103,7 +119,7 @@ namespace MotorcycleMaintenance
             this.ChangeDateLabel.AutoSize = true;
             this.ChangeDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ChangeDateLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ChangeDateLabel.Location = new System.Drawing.Point(10, 193);
+            this.ChangeDateLabel.Location = new System.Drawing.Point(10, 215);
             this.ChangeDateLabel.Name = "ChangeDateLabel";
             this.ChangeDateLabel.Size = new System.Drawing.Size(85, 16);
             this.ChangeDateLabel.TabIndex = 4;
@@ -114,7 +130,7 @@ namespace MotorcycleMaintenance
             this.MakeLabel.AutoSize = true;
             this.MakeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MakeLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.MakeLabel.Location = new System.Drawing.Point(10, 137);
+            this.MakeLabel.Location = new System.Drawing.Point(10, 119);
             this.MakeLabel.Name = "MakeLabel";
             this.MakeLabel.Size = new System.Drawing.Size(42, 16);
             this.MakeLabel.TabIndex = 3;
@@ -125,7 +141,7 @@ namespace MotorcycleMaintenance
             this.PriceLabel.AutoSize = true;
             this.PriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PriceLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.PriceLabel.Location = new System.Drawing.Point(10, 80);
+            this.PriceLabel.Location = new System.Drawing.Point(6, 72);
             this.PriceLabel.Name = "PriceLabel";
             this.PriceLabel.Size = new System.Drawing.Size(39, 16);
             this.PriceLabel.TabIndex = 2;
@@ -171,17 +187,23 @@ namespace MotorcycleMaintenance
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             // 
-            // AddMaintenanceBtn
+            // KiloetersOnChangeLabel
             // 
-            this.AddMaintenanceBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddMaintenanceBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.AddMaintenanceBtn.Location = new System.Drawing.Point(40, 271);
-            this.AddMaintenanceBtn.Name = "AddMaintenanceBtn";
-            this.AddMaintenanceBtn.Size = new System.Drawing.Size(100, 43);
-            this.AddMaintenanceBtn.TabIndex = 8;
-            this.AddMaintenanceBtn.Text = "Add Maintenance";
-            this.AddMaintenanceBtn.UseVisualStyleBackColor = true;
-            this.AddMaintenanceBtn.Click += new System.EventHandler(this.AddMaintenanceBtn_Click);
+            this.KiloetersOnChangeLabel.AutoSize = true;
+            this.KiloetersOnChangeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KiloetersOnChangeLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.KiloetersOnChangeLabel.Location = new System.Drawing.Point(6, 173);
+            this.KiloetersOnChangeLabel.Name = "KiloetersOnChangeLabel";
+            this.KiloetersOnChangeLabel.Size = new System.Drawing.Size(137, 16);
+            this.KiloetersOnChangeLabel.TabIndex = 9;
+            this.KiloetersOnChangeLabel.Text = "Kilometers on change";
+            // 
+            // KilometersOnChangeTextBox
+            // 
+            this.KilometersOnChangeTextBox.Location = new System.Drawing.Point(9, 192);
+            this.KilometersOnChangeTextBox.Name = "KilometersOnChangeTextBox";
+            this.KilometersOnChangeTextBox.Size = new System.Drawing.Size(184, 20);
+            this.KilometersOnChangeTextBox.TabIndex = 10;
             // 
             // AddMaintenanceForm
             // 
@@ -214,5 +236,7 @@ namespace MotorcycleMaintenance
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox MaintenanceBox;
         private System.Windows.Forms.Button AddMaintenanceBtn;
+        private System.Windows.Forms.TextBox KilometersOnChangeTextBox;
+        private System.Windows.Forms.Label KiloetersOnChangeLabel;
     }
 }

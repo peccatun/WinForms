@@ -80,6 +80,18 @@ namespace MotorcycleMaintenance
             mainForm.MotorcycleMakeLabel.Text = model.Make;
             mainForm.MotorcycleModelLabel.Text = model.Model;
 
+            DialogResult dialogResult = MessageBox.Show($"Selected motorcycle is {model.Make} {model.Model}",GlobalConstants.MessageBoxTopInfo,
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                this.Close();
+                return;
+            }
+
+            MessageBox.Show("Choose Again",GlobalConstants.MessageBoxTopInfo);
+
         }
 
         private int GetMotorcycleIdFromDgv()

@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="Globals\GlobalConstants.cs" />
     <Compile Include="Globals\GlobalVariables.cs" />
+    <Compile Include="InputModels\Battery\CreateBatteryInputModel.cs" />
     <Compile Include="InputModels\MotorcycleInfoInputModel.cs" />
     <Compile Include="LogInUserForm.cs">
       <SubType>Form</SubType>
@@ -87,6 +88,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BatteryService.cs" />
     <Compile Include="Services\Contracts\IBatteryService.cs" />
     <Compile Include="Services\Contracts\IBrakefluidService.cs" />
     <Compile Include="Services\Contracts\IClutchService.cs" />

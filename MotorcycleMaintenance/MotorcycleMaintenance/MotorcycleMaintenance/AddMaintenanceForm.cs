@@ -1,4 +1,7 @@
 ﻿using MotorcycleMaintenance.Globals;
+using MotorcycleMaintenance.InputModels.Battery;
+using MotorcycleMaintenance.Services;
+using MotorcycleMaintenance.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,17 +16,18 @@ namespace MotorcycleMaintenance
 {
     public partial class AddMaintenanceForm : Form
     {
+        private readonly IBatteryService batteryService;
+
         public AddMaintenanceForm()
         {
             InitializeComponent();
+            batteryService = new BatteryService();
         }
 
         private void AddMaintenanceForm_Load(object sender, EventArgs e)
         {
             AddMantainanceBoxItems();
         }
-
-
 
         private void AddMantainanceBoxItems()
         {
@@ -42,17 +46,10 @@ namespace MotorcycleMaintenance
         {
 
             string selectedMaintenance = MaintenanceBox.SelectedItem.ToString();
+            CreateNewMaintenance(selectedMaintenance);
 
-        }
-
-        private void CreateNewBattery()
-        {
-            if (!IsMoney(PriceTextBox.Text))
-            {
-                MessageBox.Show("Price must be a number",GlobalConstants.MessageBoxTopInfo);
-                return;
-            }
-
+            MessageBox.Show("Success", GlobalConstants.MessageBoxTopInfo);
+            this.Close();
         }
 
         private void CreateNewMaintenance(string maintenanceType)
@@ -63,11 +60,42 @@ namespace MotorcycleMaintenance
             }
         }
 
+        private void CreateNewBattery()
+        {
+            if (!IsMoney(PriceTextBox.Text))
+            {
+                MessageBox.Show("Price must be a number",GlobalConstants.MessageBoxTopInfo);
+                return;
+            }
+
+            if (!IsKilometers(KilometersOnChangeTextBox.Text))
+            {
+                MessageBox.Show("Kilometers must be a number", GlobalConstants.MessageBoxTopInfo);
+                return;
+            }
+
+            CreateBatteryInputModel model = new CreateBatteryInputModel
+            {
+                Make = MakeTextBox.Text,
+                MotorcycleId = GlobalVariables.CurrentBikeId,
+                KilometersOnChange = int.Parse(KilometersOnChangeTextBox.Text),
+                ChangeDate = ChangeDateDatePicker.Value.ToString("dd.MM.yyyy"),
+                Price = double.Parse(PriceTextBox.Text),
+            };
+
+            batteryService.CreateBattery(model);
+
+        }
+
         private bool IsMoney(string number)
         {
             return double.TryParse(number, out double result);
         }
 
+        private bool IsKilometers(string kilometers)
+        {
+            return int.TryParse(kilometers,out int result);
+        }
 
     }
 }
