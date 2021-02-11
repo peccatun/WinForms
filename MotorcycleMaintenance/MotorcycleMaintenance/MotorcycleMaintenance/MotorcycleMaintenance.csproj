@@ -67,7 +67,10 @@
     <Compile Include="Globals\GlobalConstants.cs" />
     <Compile Include="Globals\GlobalVariables.cs" />
     <Compile Include="InputModels\Battery\CreateBatteryInputModel.cs" />
+    <Compile Include="InputModels\FrontBrakes\FrontBrakesInputModel.cs" />
     <Compile Include="InputModels\MotorcycleInfoInputModel.cs" />
+    <Compile Include="InputModels\OilFilter\OilFilterInputModel.cs" />
+    <Compile Include="InputModels\Oil\CreateOilInputModel.cs" />
     <Compile Include="LogInUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,7 +103,10 @@
     <Compile Include="Services\Contracts\IRearBrakeService.cs" />
     <Compile Include="Services\Contracts\ITiresService.cs" />
     <Compile Include="Services\Contracts\IUserService.cs" />
+    <Compile Include="Services\FrontBrakesService.cs" />
     <Compile Include="Services\MotorcycleService.cs" />
+    <Compile Include="Services\OilFilterService.cs" />
+    <Compile Include="Services\OilService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="ViewModels\UserMotorcycleViewModel.cs" />
     <EmbeddedResource Include="AddMaintenanceForm.resx">

@@ -12,7 +12,6 @@ namespace MotorcycleMaintenance.Services
     {
         private OdbcConnection connection;
         private OdbcCommand command;
-        private OdbcDataReader reader;
 
         public BatteryService()
         {
@@ -20,8 +19,9 @@ namespace MotorcycleMaintenance.Services
             command = new OdbcCommand(" ", connection);
         }
 
+
         /// <summary>
-        /// Creates new battery 
+        /// Create new oil
         /// </summary>
         /// <param name="model"></param>
         public void CreateBattery(CreateBatteryInputModel model)
