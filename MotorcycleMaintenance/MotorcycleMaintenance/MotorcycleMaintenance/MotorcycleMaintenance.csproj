@@ -58,6 +58,8 @@
     <Compile Include="ChooseMotorcycleForm.Designer.cs">
       <DependentUpon>ChooseMotorcycleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CommandExecuter\CommandExecuter.cs" />
+    <Compile Include="CommandExecuter\Contracts\ICommandExecuter.cs" />
     <Compile Include="EnterMotorcycleInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,10 +69,15 @@
     <Compile Include="Globals\GlobalConstants.cs" />
     <Compile Include="Globals\GlobalVariables.cs" />
     <Compile Include="InputModels\Battery\CreateBatteryInputModel.cs" />
+    <Compile Include="InputModels\BrakeFluid\CreateBrakeFluidInputModel.cs" />
+    <Compile Include="InputModels\Clutch\CreateClutchInputModel.cs" />
+    <Compile Include="InputModels\Coolant\CreateCoolantInputModel.cs" />
     <Compile Include="InputModels\FrontBrakes\FrontBrakesInputModel.cs" />
     <Compile Include="InputModels\MotorcycleInfoInputModel.cs" />
     <Compile Include="InputModels\OilFilter\OilFilterInputModel.cs" />
     <Compile Include="InputModels\Oil\CreateOilInputModel.cs" />
+    <Compile Include="InputModels\RearBrakes\CreateRearBrakesInputModel.cs" />
+    <Compile Include="InputModels\Tires\CreateTiresInputModel.cs" />
     <Compile Include="LogInUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,21 +99,26 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BatteryService.cs" />
+    <Compile Include="Services\BrakeFluidService.cs" />
+    <Compile Include="Services\ClutchService.cs" />
     <Compile Include="Services\Contracts\IBatteryService.cs" />
-    <Compile Include="Services\Contracts\IBrakefluidService.cs" />
+    <Compile Include="Services\Contracts\IBrakeFluidService.cs" />
     <Compile Include="Services\Contracts\IClutchService.cs" />
     <Compile Include="Services\Contracts\ICoolantService.cs" />
     <Compile Include="Services\Contracts\IFrontBrakesService.cs" />
     <Compile Include="Services\Contracts\IMotorcycleService.cs" />
     <Compile Include="Services\Contracts\IOilFilterService.cs" />
     <Compile Include="Services\Contracts\IOilService.cs" />
-    <Compile Include="Services\Contracts\IRearBrakeService.cs" />
+    <Compile Include="Services\Contracts\IRearBrakesService.cs" />
     <Compile Include="Services\Contracts\ITiresService.cs" />
     <Compile Include="Services\Contracts\IUserService.cs" />
+    <Compile Include="Services\CoolantService.cs" />
     <Compile Include="Services\FrontBrakesService.cs" />
     <Compile Include="Services\MotorcycleService.cs" />
     <Compile Include="Services\OilFilterService.cs" />
     <Compile Include="Services\OilService.cs" />
+    <Compile Include="Services\RearBrakesService.cs" />
+    <Compile Include="Services\TiresService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="ViewModels\UserMotorcycleViewModel.cs" />
     <EmbeddedResource Include="AddMaintenanceForm.resx">

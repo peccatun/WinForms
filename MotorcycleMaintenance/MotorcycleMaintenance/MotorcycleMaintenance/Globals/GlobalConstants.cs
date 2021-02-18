@@ -16,11 +16,11 @@
 
             public static string Coolant = "Coolant";
 
-            public static string FrontBrakes = "Front brakes";
+            public static string FrontBrakes = "Front Brakes";
 
             public static string Oil = "Oil";
 
-            public static string RearBrake = "Rear Brake";
+            public static string RearBrake = "Rear Brakes";
 
             public static string Tires = "Tires";
 

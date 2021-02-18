@@ -1,35 +1,44 @@
 ﻿using MotorcycleMaintenance.Globals;
 using MotorcycleMaintenance.InputModels.Battery;
+using MotorcycleMaintenance.InputModels.BrakeFluid;
+using MotorcycleMaintenance.InputModels.Clutch;
+using MotorcycleMaintenance.InputModels.Coolant;
 using MotorcycleMaintenance.InputModels.FrontBrakes;
 using MotorcycleMaintenance.InputModels.Oil;
 using MotorcycleMaintenance.InputModels.OilFilter;
+using MotorcycleMaintenance.InputModels.RearBrakes;
+using MotorcycleMaintenance.InputModels.Tires;
 using MotorcycleMaintenance.Services;
 using MotorcycleMaintenance.Services.Contracts;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
 namespace MotorcycleMaintenance
 {
     public partial class AddMaintenanceForm : Form
     {
-        private readonly IBatteryService batteryService;
         private readonly IOilService oilService;
+        private readonly ITiresService tiresService;
+        private readonly IClutchService clutchService;
+        private readonly ICoolantService coolantService;
+        private readonly IBatteryService batteryService;
         private readonly IOilFilterService oilFilterService;
+        private readonly IRearBrakesService rearBrakesService;
+        private readonly IBrakeFluidService brakeFluidService;
         private readonly IFrontBrakesService frontBrakesService;
 
         public AddMaintenanceForm()
         {
             InitializeComponent();
-            batteryService = new BatteryService();
             oilService = new OilService();
+            tiresService = new TiresService();
+            clutchService = new ClutchService();
+            batteryService = new BatteryService();
+            coolantService = new CoolantService();
             oilFilterService = new OilFilterService();
+            brakeFluidService = new BrakeFluidService();
+            rearBrakesService = new RearBrakesService();
             frontBrakesService = new FrontBrakesService();
         }
 
@@ -78,6 +87,26 @@ namespace MotorcycleMaintenance
             if (maintenanceType == GlobalConstants.MantainanceType.FrontBrakes)
             {
                 CreateNewFrontBrakes();
+            }
+            if (maintenanceType == GlobalConstants.MantainanceType.Brakefluid)
+            {
+                CreateNewBrakeFluid();
+            }
+            if (maintenanceType == GlobalConstants.MantainanceType.RearBrake)
+            {
+                CreateNewRearBrakes();
+            }
+            if (maintenanceType == GlobalConstants.MantainanceType.Clutch)
+            {
+                CreateNewClutch();
+            }
+            if (maintenanceType == GlobalConstants.MantainanceType.Tires)
+            {
+                CreateNewTires();
+            }
+            if (maintenanceType == GlobalConstants.MantainanceType.Coolant)
+            {
+                CreateNewCoolant();
             }
         }
 
@@ -184,6 +213,136 @@ namespace MotorcycleMaintenance
             };
 
             frontBrakesService.CreateFrontBrakes(model);
+        }
+
+        private void CreateNewBrakeFluid()
+        {
+            if (!IsMoney(PriceTextBox.Text))
+            {
+                MessageBox.Show("Price must be a number", GlobalConstants.MessageBoxTopInfo);
+                return;
+            }
+
+            if (!IsKilometers(KilometersOnChangeTextBox.Text))
+            {
+                MessageBox.Show("Kilometers must be a number", GlobalConstants.MessageBoxTopInfo);
+                return;
+            }
+
+            CreateBrakeFluidInputModel model = new CreateBrakeFluidInputModel
+            {
+                Make = MakeTextBox.Text,
+                MotorcycleId = GlobalVariables.CurrentBikeId,
+                KilometersOnChange = int.Parse(KilometersOnChangeTextBox.Text),
+                ChangeDate = ChangeDateDatePicker.Value.ToString("dd.MM.yyyy"),
+                Price = double.Parse(PriceTextBox.Text),
+            };
+
+            brakeFluidService.CreateBrakeFluid(model);
+        }
+
+        private void CreateNewRearBrakes()
+        {
+            if (!IsMoney(PriceTextBox.Text))
+            {
+                MessageBox.Show("Price must be a number", GlobalConstants.MessageBoxTopInfo);
+                return;
+            }
+
+            if (!IsKilometers(KilometersOnChangeTextBox.Text))
+            {
+                MessageBox.Show("Kilometers must be a number", GlobalConstants.MessageBoxTopInfo);
+                return;
+            }
+
+            CreateRearBrakesInputModel model = new CreateRearBrakesInputModel
+            {
+                Make = MakeTextBox.Text,
+                MotorcycleId = GlobalVariables.CurrentBikeId,
+                KilometersOnChange = int.Parse(KilometersOnChangeTextBox.Text),
+                ChangeDate = ChangeDateDatePicker.Value.ToString("dd.MM.yyyy"),
+                Price = double.Parse(PriceTextBox.Text),
+            };
+
+            rearBrakesService.CreateRearBrakes(model);
+        }
+
+        private void CreateNewClutch()
+        {
+            if (!IsMoney(PriceTextBox.Text))
+            {
+                MessageBox.Show("Price must be a number", GlobalConstants.MessageBoxTopInfo);
+                return;
+            }
+
+            if (!IsKilometers(KilometersOnChangeTextBox.Text))
+            {
+                MessageBox.Show("Kilometers must be a number", GlobalConstants.MessageBoxTopInfo);
+                return;
+            }
+
+            CreateClutchInputModel model = new CreateClutchInputModel
+            {
+                Make = MakeTextBox.Text,
+                MotorcycleId = GlobalVariables.CurrentBikeId,
+                KilometersOnChange = int.Parse(KilometersOnChangeTextBox.Text),
+                ChangeDate = ChangeDateDatePicker.Value.ToString("dd.MM.yyyy"),
+                Price = double.Parse(PriceTextBox.Text),
+            };
+
+            clutchService.CreateClutch(model);
+        }
+
+        private void CreateNewTires()
+        {
+            if (!IsMoney(PriceTextBox.Text))
+            {
+                MessageBox.Show("Price must be a number", GlobalConstants.MessageBoxTopInfo);
+                return;
+            }
+
+            if (!IsKilometers(KilometersOnChangeTextBox.Text))
+            {
+                MessageBox.Show("Kilometers must be a number", GlobalConstants.MessageBoxTopInfo);
+                return;
+            }
+
+            CreateTiresInputModel model = new CreateTiresInputModel
+            {
+                Make = MakeTextBox.Text,
+                MotorcycleId = GlobalVariables.CurrentBikeId,
+                KilometersOnChange = int.Parse(KilometersOnChangeTextBox.Text),
+                ChangeDate = ChangeDateDatePicker.Value.ToString("dd.MM.yyyy"),
+                Price = double.Parse(PriceTextBox.Text),
+            };
+
+            tiresService.CreateTires(model);
+        }
+
+        private void CreateNewCoolant()
+        {
+            if (!IsMoney(PriceTextBox.Text))
+            {
+                MessageBox.Show("Price must be a number", GlobalConstants.MessageBoxTopInfo);
+                return;
+            }
+
+            if (!IsKilometers(KilometersOnChangeTextBox.Text))
+            {
+                MessageBox.Show("Kilometers must be a number", GlobalConstants.MessageBoxTopInfo);
+                return;
+            }
+
+            CreateCoolantInputModel model = new CreateCoolantInputModel
+            {
+                Make = MakeTextBox.Text,
+                MotorcycleId = GlobalVariables.CurrentBikeId,
+                KilometersOnChange = int.Parse(KilometersOnChangeTextBox.Text),
+                ChangeDate = ChangeDateDatePicker.Value.ToString("dd.MM.yyyy"),
+                Price = double.Parse(PriceTextBox.Text),
+            };
+
+            coolantService.CreateCoolant(model);
         }
 
         private bool IsMoney(string number)

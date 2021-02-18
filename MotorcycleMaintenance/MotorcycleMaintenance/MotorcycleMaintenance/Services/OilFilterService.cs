@@ -1,4 +1,5 @@
-﻿using MotorcycleMaintenance.Globals;
+﻿using MotorcycleMaintenance.CommandExecuter.Contracts;
+using MotorcycleMaintenance.Globals;
 using MotorcycleMaintenance.InputModels.OilFilter;
 using MotorcycleMaintenance.Services.Contracts;
 using System;
@@ -10,41 +11,21 @@ namespace MotorcycleMaintenance.Services
 {
     public class OilFilterService : IOilFilterService
     {
-        private OdbcConnection connection;
-        private OdbcCommand command;
+        private readonly ICommandExecuter commandExecuter;
 
         public OilFilterService()
         {
-            connection = new OdbcConnection(GlobalConstants.ConnectionsString);
-            command = new OdbcCommand(" ",connection);
+            commandExecuter = new CommandExecuter.CommandExecuter();
         }
 
         public void CreateOilFilter(OilFilterInputModel model)
         {
-            try
-            {
-                StringBuilder insertIntoOilFilterQuery = new StringBuilder();
 
-                insertIntoOilFilterQuery.Append($"execute procedure InsertIntoOilFilter({model.Price},'{model.Make}','{model.ChangeDate}',{model.MotorcycleId},{model.KilometersOnChange});");
+            StringBuilder insertIntoOilFilterQuery = new StringBuilder();
 
-                command.CommandText = insertIntoOilFilterQuery.ToString();
+            insertIntoOilFilterQuery.Append($"execute procedure InsertIntoOilFilter({model.Price},'{model.Make}','{model.ChangeDate}',{model.MotorcycleId},{model.KilometersOnChange});");
 
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open();
-                }
-
-                command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-            finally
-            {
-                connection.Close();
-            }
+            commandExecuter.ExecuteNonQuery(insertIntoOilFilterQuery.ToString());
         }
     }
 }

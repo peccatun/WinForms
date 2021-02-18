@@ -1,4 +1,5 @@
-﻿using MotorcycleMaintenance.Globals;
+﻿using MotorcycleMaintenance.CommandExecuter.Contracts;
+using MotorcycleMaintenance.Globals;
 using MotorcycleMaintenance.Services.Contracts;
 using System;
 using System.Data;
@@ -9,40 +10,25 @@ namespace MotorcycleMaintenance.Services
 {
     public class UserService : IUserService
     {
+        private readonly ICommandExecuter commandExecuter;
         private readonly OdbcConnection connection;
         private readonly OdbcCommand command;
 
         public UserService()
         {
             connection = new OdbcConnection(GlobalConstants.ConnectionsString);
+            commandExecuter = new CommandExecuter.CommandExecuter();
             command = new OdbcCommand(" ", connection);
         }
 
         public void CreateUser(string username, string password)
         {
-            try
-            {
-                StringBuilder createUserQuerySb = new StringBuilder();
+            StringBuilder createUserQuerySb = new StringBuilder();
 
-                createUserQuerySb.Append("insert into users(username,password)");
-                createUserQuerySb.Append($"values ('{username}','{password}')");
+            createUserQuerySb.Append("insert into users(username,password)");
+            createUserQuerySb.Append($"values ('{username}','{password}')");
 
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open();
-                }
-
-                command.CommandText = createUserQuerySb.ToString();
-                command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-
-            }
-            finally
-            {
-                connection.Close();
-            }
+            commandExecuter.ExecuteNonQuery(createUserQuerySb.ToString());
 
         }
 

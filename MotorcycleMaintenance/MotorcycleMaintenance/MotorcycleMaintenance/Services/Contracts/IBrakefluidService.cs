@@ -1,6 +1,9 @@
-﻿namespace MotorcycleMaintenance.Services.Contracts
+﻿using MotorcycleMaintenance.InputModels.BrakeFluid;
+
+namespace MotorcycleMaintenance.Services.Contracts
 {
-    public interface IBrakefluidService
+    public interface IBrakeFluidService
     {
+        void CreateBrakeFluid(CreateBrakeFluidInputModel model);
     }
 }

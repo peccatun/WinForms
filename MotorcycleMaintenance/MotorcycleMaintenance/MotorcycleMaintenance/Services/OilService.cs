@@ -1,4 +1,5 @@
-﻿using MotorcycleMaintenance.Globals;
+﻿using MotorcycleMaintenance.CommandExecuter.Contracts;
+using MotorcycleMaintenance.Globals;
 using MotorcycleMaintenance.InputModels.Oil;
 using MotorcycleMaintenance.Services.Contracts;
 using System;
@@ -10,13 +11,11 @@ namespace MotorcycleMaintenance.Services
 {
     public class OilService : IOilService
     {
-        private OdbcConnection connection;
-        private OdbcCommand command;
+        private readonly ICommandExecuter commandExecuter;
 
         public OilService()
         {
-            connection = new OdbcConnection(GlobalConstants.ConnectionsString);
-            command = new OdbcCommand(" ", connection);
+            commandExecuter = new CommandExecuter.CommandExecuter();
         }
 
         /// <summary>
@@ -25,30 +24,11 @@ namespace MotorcycleMaintenance.Services
         /// <param name="model"></param>
         public void CreateOil(CreateOilInputModel model)
         {
-            try
-            {
-                StringBuilder insertIntoOilQuery = new StringBuilder();
+            StringBuilder insertIntoOilQuery = new StringBuilder();
 
-                insertIntoOilQuery.Append($"execute procedure InsertIntoOil({model.Price},'{model.Make}','{model.ChangeDate}',{model.MotorcycleId},{model.KilometersOnChange});");
+            insertIntoOilQuery.Append($"execute procedure InsertIntoOil({model.Price},'{model.Make}','{model.ChangeDate}',{model.MotorcycleId},{model.KilometersOnChange});");
 
-                command.CommandText = insertIntoOilQuery.ToString();
-
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open();
-                }
-
-                command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-            finally
-            {
-                connection.Close();
-            }
+            commandExecuter.ExecuteNonQuery(insertIntoOilQuery.ToString());
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MotorcycleMaintenance.Globals;
+﻿using MotorcycleMaintenance.CommandExecuter.Contracts;
+using MotorcycleMaintenance.Globals;
 using MotorcycleMaintenance.InputModels.FrontBrakes;
 using MotorcycleMaintenance.Services.Contracts;
 using System;
@@ -10,42 +11,21 @@ namespace MotorcycleMaintenance.Services
 {
     public class FrontBrakesService : IFrontBrakesService
     {
-        private OdbcConnection connection;
-        private OdbcCommand command;
-
+        private readonly ICommandExecuter commandExecuter;
         public FrontBrakesService()
         {
-            connection = new OdbcConnection(GlobalConstants.ConnectionsString);
-            command = new OdbcCommand(" ", connection);
+            commandExecuter = new CommandExecuter.CommandExecuter();
         }
 
         public void CreateFrontBrakes(FrontBrakesInputModel model)
         {
-            try
-            {
-                StringBuilder insertIntoFrontBrakesQuery = new StringBuilder();
 
-                insertIntoFrontBrakesQuery
-                    .Append($"execute procedure InsertIntoFrontBrakes({model.Price},'{model.Make}','{model.ChangeDate}',{model.MotorcycleId},{model.KilometersOnChange});");
+            StringBuilder insertIntoFrontBrakesQuery = new StringBuilder();
 
-                command.CommandText = insertIntoFrontBrakesQuery.ToString();
+            insertIntoFrontBrakesQuery
+                .Append($"execute procedure InsertIntoFrontBrakes({model.Price},'{model.Make}','{model.ChangeDate}',{model.MotorcycleId},{model.KilometersOnChange});");
 
-                if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open();
-                }
-
-                command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-            finally
-            {
-                connection.Close();
-            }
+            commandExecuter.ExecuteNonQuery(insertIntoFrontBrakesQuery.ToString());
         }
     }
 }
