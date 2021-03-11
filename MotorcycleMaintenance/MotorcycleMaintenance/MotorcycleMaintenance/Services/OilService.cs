@@ -1,5 +1,4 @@
-﻿using MotorcycleMaintenance.CommandExecuter.Contracts;
-using MotorcycleMaintenance.Globals;
+﻿using MotorcycleMaintenance.Globals;
 using MotorcycleMaintenance.InputModels.Oil;
 using MotorcycleMaintenance.Services.Contracts;
 using System;
@@ -11,11 +10,11 @@ namespace MotorcycleMaintenance.Services
 {
     public class OilService : IOilService
     {
-        private readonly ICommandExecuter commandExecuter;
+
 
         public OilService()
         {
-            commandExecuter = new CommandExecuter.CommandExecuter();
+
         }
 
         /// <summary>
@@ -28,7 +27,7 @@ namespace MotorcycleMaintenance.Services
 
             insertIntoOilQuery.Append($"execute procedure InsertIntoOil({model.Price},'{model.Make}','{model.ChangeDate}',{model.MotorcycleId},{model.KilometersOnChange});");
 
-            commandExecuter.ExecuteNonQuery(insertIntoOilQuery.ToString());
+            CommandExecuter.CommandExecuter.ExecuteNonQuery(insertIntoOilQuery.ToString());
         }
     }
 }

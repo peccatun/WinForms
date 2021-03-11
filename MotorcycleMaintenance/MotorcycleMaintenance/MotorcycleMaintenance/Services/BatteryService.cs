@@ -1,5 +1,4 @@
-﻿using MotorcycleMaintenance.CommandExecuter.Contracts;
-using MotorcycleMaintenance.Globals;
+﻿using MotorcycleMaintenance.Globals;
 using MotorcycleMaintenance.InputModels.Battery;
 using MotorcycleMaintenance.Services.Contracts;
 using System;
@@ -11,11 +10,10 @@ namespace MotorcycleMaintenance.Services
 {
     public class BatteryService : IBatteryService
     {
-        private readonly ICommandExecuter commandExecuter;
 
         public BatteryService()
         {
-            commandExecuter = new CommandExecuter.CommandExecuter();
+
         }
 
 
@@ -29,7 +27,7 @@ namespace MotorcycleMaintenance.Services
 
             createBatteryQuery.Append($"execute procedure insertintobattry({model.Price},'{model.Make}','{model.ChangeDate}',{model.MotorcycleId},{model.KilometersOnChange});");
 
-            commandExecuter.ExecuteNonQuery(createBatteryQuery.ToString());
+            CommandExecuter.CommandExecuter.ExecuteNonQuery(createBatteryQuery.ToString());
 
         }
     }

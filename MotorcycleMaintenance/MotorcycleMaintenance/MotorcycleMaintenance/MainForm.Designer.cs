@@ -145,6 +145,7 @@
             this.ReportsButton.TabIndex = 10;
             this.ReportsButton.Text = "Reports";
             this.ReportsButton.UseVisualStyleBackColor = true;
+            this.ReportsButton.Click += new System.EventHandler(this.ReportsButton_Click);
             // 
             // MainForm
             // 

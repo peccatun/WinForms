@@ -75,6 +75,7 @@ namespace MotorcycleMaintenance
             this.UsernameTextBox.Name = "UsernameTextBox";
             this.UsernameTextBox.Size = new System.Drawing.Size(192, 20);
             this.UsernameTextBox.TabIndex = 3;
+            this.UsernameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UsernameTextBox_KeyDown);
             // 
             // PasswordTextBox
             // 
@@ -83,6 +84,7 @@ namespace MotorcycleMaintenance
             this.PasswordTextBox.Size = new System.Drawing.Size(192, 20);
             this.PasswordTextBox.TabIndex = 4;
             this.PasswordTextBox.UseSystemPasswordChar = true;
+            this.PasswordTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PasswordTextBox_KeyDown);
             // 
             // LogInBtn
             // 

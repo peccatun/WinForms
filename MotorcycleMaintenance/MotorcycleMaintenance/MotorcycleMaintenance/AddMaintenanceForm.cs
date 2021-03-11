@@ -4,6 +4,7 @@ using MotorcycleMaintenance.InputModels.BrakeFluid;
 using MotorcycleMaintenance.InputModels.Clutch;
 using MotorcycleMaintenance.InputModels.Coolant;
 using MotorcycleMaintenance.InputModels.FrontBrakes;
+using MotorcycleMaintenance.InputModels.MaintenanceService;
 using MotorcycleMaintenance.InputModels.Oil;
 using MotorcycleMaintenance.InputModels.OilFilter;
 using MotorcycleMaintenance.InputModels.RearBrakes;
@@ -11,7 +12,7 @@ using MotorcycleMaintenance.InputModels.Tires;
 using MotorcycleMaintenance.Services;
 using MotorcycleMaintenance.Services.Contracts;
 using System;
-
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace MotorcycleMaintenance
@@ -27,6 +28,7 @@ namespace MotorcycleMaintenance
         private readonly IRearBrakesService rearBrakesService;
         private readonly IBrakeFluidService brakeFluidService;
         private readonly IFrontBrakesService frontBrakesService;
+        private readonly IMaintenanceService maintenanceService;
 
         public AddMaintenanceForm()
         {
@@ -40,6 +42,7 @@ namespace MotorcycleMaintenance
             brakeFluidService = new BrakeFluidService();
             rearBrakesService = new RearBrakesService();
             frontBrakesService = new FrontBrakesService();
+            maintenanceService = new MaintenanceService();
         }
 
         private void AddMaintenanceForm_Load(object sender, EventArgs e)
@@ -49,15 +52,7 @@ namespace MotorcycleMaintenance
 
         private void AddMantainanceBoxItems()
         {
-            MaintenanceBox.Items.Add(GlobalConstants.MantainanceType.Battery);
-            MaintenanceBox.Items.Add(GlobalConstants.MantainanceType.Brakefluid);
-            MaintenanceBox.Items.Add(GlobalConstants.MantainanceType.Clutch);
-            MaintenanceBox.Items.Add(GlobalConstants.MantainanceType.Coolant);
-            MaintenanceBox.Items.Add(GlobalConstants.MantainanceType.FrontBrakes);
-            MaintenanceBox.Items.Add(GlobalConstants.MantainanceType.Oil);
-            MaintenanceBox.Items.Add(GlobalConstants.MantainanceType.OilFilter);
-            MaintenanceBox.Items.Add(GlobalConstants.MantainanceType.RearBrake);
-            MaintenanceBox.Items.Add(GlobalConstants.MantainanceType.Tires);
+            maintenanceService.SetMaintenance(MaintenanceBox);
         }
 
         private void AddMaintenanceBtn_Click(object sender, EventArgs e)
@@ -78,7 +73,7 @@ namespace MotorcycleMaintenance
             }
             if (maintenanceType == GlobalConstants.MantainanceType.Oil)
             {
-                CreateNewOil();
+                CreateNewOil(maintenanceType);
             }
             if (maintenanceType == GlobalConstants.MantainanceType.OilFilter)
             {
@@ -137,7 +132,7 @@ namespace MotorcycleMaintenance
 
         }
 
-        private void CreateNewOil()
+        private void CreateNewOil(string maintenanceType)
         {
             if (!IsMoney(PriceTextBox.Text))
             {
@@ -151,6 +146,7 @@ namespace MotorcycleMaintenance
                 return;
             }
 
+
             CreateOilInputModel model = new CreateOilInputModel
             {
                 Make = MakeTextBox.Text,
@@ -161,6 +157,24 @@ namespace MotorcycleMaintenance
             };
 
             oilService.CreateOil(model);
+
+            if (maintenanceService.IsNotLast(maintenanceType, model.MotorcycleId))
+            {
+                CalculationDataModel calcDataModel = maintenanceService.GetCalculationDataModel(maintenanceType, model.MotorcycleId);
+
+                int monthsDriven = maintenanceService.CalculateMonthsDriven(DateTime.ParseExact(model.ChangeDate,"dd.MM.yyyy",CultureInfo.InvariantCulture), calcDataModel.ChangeDate);
+                int kilometersDriven = maintenanceService.CalculateKilometersDriven(model.KilometersOnChange, calcDataModel.KilometersOnChange);
+
+                UpdateMaintenanceDataInputModel updateModel = new UpdateMaintenanceDataInputModel
+                {
+                    KilometersDriven = kilometersDriven,
+                    MonthsDriven = monthsDriven,
+                    TableName = maintenanceType,
+                    MotorcycleId = model.MotorcycleId,
+                };
+
+                maintenanceService.SetAdditionalData(updateModel);
+            }
         }
 
         private void CreateNewOilFilter()

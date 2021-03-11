@@ -52,5 +52,21 @@ namespace MotorcycleMaintenance
             }
 
         }
+
+        private void UsernameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                LogInBtn_Click(sender,e);
+            }
+        }
+
+        private void PasswordTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                LogInBtn_Click(sender,e);
+            }
+        }
     }
 }
