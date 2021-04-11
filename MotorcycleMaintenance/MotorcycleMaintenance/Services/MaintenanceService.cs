@@ -14,11 +14,13 @@ namespace MotorcycleMaintenance.Services
 
         private readonly OdbcConnection con;
         private readonly OdbcCommand com;
+        private readonly Logger.Logger logger;
 
         public MaintenanceService()
         {
             con = new OdbcConnection(GlobalConstants.ConnectionsString);
             com = new OdbcCommand(" ", con);
+            logger = new Logger.Logger();
         }
 
         public int CalculateMonthsDriven(DateTime currentDateTime, DateTime oldDateTime)
@@ -92,8 +94,7 @@ namespace MotorcycleMaintenance.Services
             }
             catch (Exception ex)
             {
-
-                throw;
+                logger.LogExceptionText(ex.ToString());
             }
             finally
             {

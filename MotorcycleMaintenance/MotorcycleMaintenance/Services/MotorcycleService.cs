@@ -13,11 +13,13 @@ namespace MotorcycleMaintenance.Services
     public class MotorcycleService : IMotorcycleService
     {
         private readonly OdbcConnection connection;
+        private readonly Logger.Logger logger;
         private readonly OdbcCommand command;
         private OdbcDataReader reader;
 
         public MotorcycleService()
         {
+            logger = new Logger.Logger();
             connection = new OdbcConnection(GlobalConstants.ConnectionsString);
             command = new OdbcCommand(" ", connection);
         }
@@ -54,6 +56,8 @@ namespace MotorcycleMaintenance.Services
 
         public UserMotorcycleViewModel GetMotorcycleForMainForm(int motorcycleId)
         {
+            UserMotorcycleViewModel model = new UserMotorcycleViewModel();
+
             try
             {
                 if (connection.State == ConnectionState.Closed)
@@ -69,7 +73,7 @@ namespace MotorcycleMaintenance.Services
 
                 command.CommandText = getMotorcycleInfoQuery.ToString();
 
-                UserMotorcycleViewModel model = new UserMotorcycleViewModel();
+
                 using (reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -79,18 +83,17 @@ namespace MotorcycleMaintenance.Services
                         model.Model = reader["model"].ToString();
                     }
                 }
-
-                return model;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                logger.LogExceptionText(ex.ToString(),$"Motorcycle ID e:{motorcycleId}");
             }
             finally
             {
                 connection.Close();
             }
+
+            return model;
         }
 
         public List<UserMotorcycleViewModel> GetUserMotorcycles(int userId)
@@ -141,6 +144,8 @@ namespace MotorcycleMaintenance.Services
 
         public bool HasMotorcycle(int motorcycleId)
         {
+            int result = 0;
+
             try
             {
                 if (connection.State == ConnectionState.Closed)
@@ -155,18 +160,18 @@ namespace MotorcycleMaintenance.Services
 
                 command.CommandText = getMotorcycleIdCountQuery.ToString();
 
-                return (int.Parse(command.ExecuteScalar().ToString())) > 0;
+                result = int.Parse(command.ExecuteScalar().ToString());
             }
             catch (Exception ex)
             {
-                throw;
+                logger.LogExceptionText(ex.ToString());
             }
             finally
             {
                 connection.Close();
             }
 
-
+            return result > 0;
         }
 
         public bool HasMotorcycles(int userId)

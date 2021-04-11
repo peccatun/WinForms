@@ -8,7 +8,7 @@ namespace MotorcycleMaintenance.Logger
 {
     public class Logger
     {
-        public void LogExceptionText(string exeptionText, string text)
+        public void LogExceptionText(string exeptionText, string text = " ")
         {
             CreateLogFolder();
             CreateExeptionLogFile();

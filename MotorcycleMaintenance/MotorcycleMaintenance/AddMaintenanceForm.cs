@@ -13,7 +13,10 @@ using MotorcycleMaintenance.InputModels.Reviews;
 using MotorcycleMaintenance.InputModels.Tires;
 using MotorcycleMaintenance.Services;
 using MotorcycleMaintenance.Services.Contracts;
+using MotorcycleMaintenance.ViewModels.Review;
+using MotorcycleMaintenance.ViewModels.Tax;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Threading;
@@ -26,6 +29,7 @@ namespace MotorcycleMaintenance
     {
         private readonly Logger.Logger logger;
         private readonly IOilService oilService;
+        private readonly ITaxService taxService;
         private readonly ITiresService tiresService;
         private readonly IClutchService clutchService;
         private readonly IReviewService reviewService;
@@ -36,12 +40,14 @@ namespace MotorcycleMaintenance
         private readonly IBrakeFluidService brakeFluidService;
         private readonly IFrontBrakesService frontBrakesService;
         private readonly IMaintenanceService maintenanceService;
+        private readonly IContributionService contributionService;
 
         public AddMaintenanceForm()
         {
             InitializeComponent();
             logger = new Logger.Logger();
             oilService = new OilService();
+            taxService = new TaxService();
             tiresService = new TiresService();
             clutchService = new ClutchService();
             batteryService = new BatteryService();
@@ -52,6 +58,7 @@ namespace MotorcycleMaintenance
             rearBrakesService = new RearBrakesService();
             frontBrakesService = new FrontBrakesService();
             maintenanceService = new MaintenanceService();
+            contributionService = new ContributionService();
         }
 
         private void AddMaintenanceForm_Load(object sender, EventArgs e)
@@ -401,13 +408,73 @@ namespace MotorcycleMaintenance
             {
                 ReviewTabUnselectedSettings();
             }
+
+            if (MaintenanceControl.SelectedTab.Name == "TaxTab")
+            {
+                GenerateTaxTabData();
+            }
+        }
+
+        private void GenerateTaxTabData()
+        {
+            int currentBikeId = GlobalVariables.CurrentBikeId;
+
+            if (!taxService.HasTax(currentBikeId))
+            {
+                TaxInformationLabel.Text = "Данъка не е платен";
+                TaxInformationLabel.ForeColor = Color.Red;
+                return;
+            }
+
+            LastTaxPayedViewModel model = taxService.GetLastTax(currentBikeId);
+            int contCount = taxService.GeTaxContCount(model.TaxId);
+            DateTime taxValidDay = model.PayDate.AddYears(1);
+
+            if (taxValidDay >= DateTime.Now)
+            {
+                if (contCount == 2)
+                {
+                    TaxInformationLabel.Text = $"Данъка е платен до {taxValidDay:dd.MM.yyyy}";
+                    TaxInformationLabel.ForeColor = Color.Green;
+                    return;
+                }
+                else if (contCount == 1)
+                {
+                    TaxInformationLabel.Text = $"Остава да направите 1 вноска";
+                    TaxInformationLabel.ForeColor = Color.Orange;
+                    double priceLeft = model.Price / 2;
+                    priceLeft = Math.Round(priceLeft,2);
+                    TaxContPriceText.Text = priceLeft.ToString();
+                    return;
+                }
+            }
+
+            TaxInformationLabel.Text = "Данъка не е платен";
+            TaxInformationLabel.ForeColor = Color.Red;
+
         }
 
         private void ReviewTabSelectedSettings()
         {
             AddMonths();
             AddInsuranceAgency(GlobalVariables.CurrentBikeId);
+            AddAvailableReviews(GlobalVariables.CurrentBikeId);
         }
+
+        private void AddAvailableReviews(int currentBikeId)
+        {
+            List<ReviewHeaderId> reviewHeader = reviewService.GetReviewHeaderId(currentBikeId);
+
+            if (reviewHeader.Count == 0)
+            {
+                return;
+            }
+
+            ReviewNumberComboBox.DataSource = new BindingSource(reviewHeader,null);
+            ReviewNumberComboBox.DisplayMember = "Key";
+            ReviewNumberComboBox.ValueMember = "Value";
+        }
+
         private void AddMonths()
         {
             for (int month = 1; month <= 12; month++)
@@ -445,22 +512,20 @@ namespace MotorcycleMaintenance
             ReviewPriceTextBox.Text = string.Empty;
             ReviewNumberComboBox.Text = string.Empty;
             InsuranceAngecyCombo.Text = string.Empty;
-            ContribuionPriceTextBox.Text = string.Empty;
+            ContributionPriceTextBox.Text = string.Empty;
         }
 
         private void ClearComboBoxes()
         {
             InsuranceAngecyCombo.Items.Clear();
             MounthsCombo.Items.Clear();
-            ReviewNumberComboBox.Items.Clear();
+            ReviewNumberComboBox.DataSource = null;
         }
 
         private async void AddReviewButton_Click(object sender, EventArgs e)
         {
             try
             {
-                throw new ArgumentException("Suck my sock");
-
                 if (string.IsNullOrEmpty(ReviewPriceTextBox.Text) || !IsMoney(ReviewPriceTextBox.Text))
                 {
                     MessageBox.Show("Няма цена.");
@@ -508,11 +573,33 @@ namespace MotorcycleMaintenance
                 reviewService.CreateReview(createReviewModel);
 
                 await Information("Успешно добавена нова застраховка", InformationType.Success);
+                GenerateContributionInfo(createReviewModel);
+                ClearReviewFileds();
             }
             catch (Exception ex)
             {
                 logger.LogExceptionText(ex.ToString(),"Batkooo sefte pisha neshto v tiq raboti eiiiiiii mainaaaaaaa");
                 await Information("Нещо се обърка. Няма добавена застраховка", InformationType.Error);
+            }
+        }
+
+        private void ClearReviewFileds()
+        {
+            InsuranceAngecyCombo.Text = string.Empty;
+            ReviewPriceTextBox.Text = string.Empty;
+            MounthsCombo.Text = string.Empty;
+            OneRadio.Checked = false;
+            TwoRadio.Checked = false;
+            ThreeRadio.Checked = false;
+            FourRadio.Checked = false;
+        }
+
+        private void GenerateContributionInfo(CreateReviewInputModel createReviewModel)
+        {
+            if (OneRadio.Checked)
+            {
+                ContributionPriceTextBox.Text = ReviewPriceTextBox.Text;
+                ReviewNumberComboBox.Text = createReviewModel.ReviewHeader;
             }
         }
 
@@ -544,7 +631,7 @@ namespace MotorcycleMaintenance
             return contributionsCount;
         }
 
-        private async Task Information(string informationText, InformationType informationType)
+        private async Task Information(string informationText, InformationType informationType, int blink = 0)
         {
             if (!string.IsNullOrEmpty(InformationLabel.Text))
             {
@@ -577,6 +664,135 @@ namespace MotorcycleMaintenance
                 }
             }
 
+            for (int i = 0; i < blink; i++)
+            {
+                await Task.Delay(1500);
+
+                await Information(informationText, informationType);
+            }
+
+        }
+
+        private void AddContributionButton_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(ReviewNumberComboBox.Text))
+            {
+                MessageBox.Show("Изберете първо застраховка за която искате да направите вноска.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(ContributionPriceTextBox.Text))
+            {
+                MessageBox.Show("Моля добавете сума!");
+                return;
+            }
+            if (!IsMoney(ContributionPriceTextBox.Text))
+            {
+                MessageBox.Show("Сума трябва да е число!");
+                return;
+            }
+
+            int reviewId = int.Parse(ReviewNumberComboBox.SelectedValue.ToString());
+            DateTime payDay = ContributionDate.Value;
+            double price = double.Parse(ContributionPriceTextBox.Text);
+
+
+            contributionService.CreateReviewNewContribution(payDay, price, reviewId);
+        }
+
+        private void PayTaxButton_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(TaxPriceTextBox.Text))
+            {
+                MessageBox.Show("Моля въведете сума на данъка!");
+                return;
+            }
+
+            if (!IsMoney(TaxPriceTextBox.Text))
+            {
+                MessageBox.Show("Моля въведете сума на данъка!");
+                return;
+            }
+            if (!OneTaxContRadio.Checked && !TwoTaxContRadio.Checked)
+            {
+                MessageBox.Show("Изберете брой вноски.");
+                return;
+            }
+
+            int contCount = 0;
+            if (OneTaxContRadio.Checked)
+            {
+                contCount++;
+            }
+            if (TwoTaxContRadio.Checked)
+            {
+                contCount += 2;
+            }
+
+            DateTime taxPayDate = TaxPayDatePicker.Value;
+            string taxPayDateString = TaxPayDatePicker.Value.ToString("dd.MM.yyyy");
+            double taxPrice = double.Parse(TaxPriceTextBox.Text);
+
+            string insertText = $"execute procedure insertintotax({taxPrice},'{taxPayDateString}',{GlobalVariables.CurrentBikeId},{contCount});";
+
+            //string insertText = $"insert into tax(price,payday,motorcycledata_id,contributioncount) values({taxPrice},'{taxPayDateString}',{GlobalVariables.CurrentBikeId},{contCount});";
+
+
+            CommandExecuter
+                .CommandExecuter
+                .ExecuteNonQuery($"execute procedure insertintotax({taxPrice},'{taxPayDateString}',{GlobalVariables.CurrentBikeId},{contCount});");
+
+            if (contCount == 1)
+            {
+                FinishTax(taxPrice, taxPayDate);
+                MessageBox.Show("Данъка е платен!");
+            }
+            else
+            {
+                MakeOneContribution(taxPrice, taxPayDate);
+                MessageBox.Show($"Остава ви 1 вноска по данъка на стойност : {Math.Round(taxPrice / 2)}");
+            }
+
+            GenerateTaxTabData();
+        }
+
+        private void FinishTax(double taxPrice, DateTime taxPayDate)
+        {
+            double contPrice = Math.Round(taxPrice / 2);
+
+            for (int i = 0; i < 2; i++)
+            {
+                contributionService.CreateTaxContribution(taxPayDate, contPrice);
+            }
+        }
+
+        private void MakeOneContribution(double taxPrice, DateTime taxPayDate)
+        {
+            double contPrice = taxPrice / 2;
+
+            contributionService.CreateTaxContribution(taxPayDate,taxPrice);
+        }
+
+        private void MakeTaxContButton_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(TaxContPriceText.Text))
+            {
+                MessageBox.Show("Моля въведете сума на вноската");
+                return;
+            }
+
+            if (!IsMoney(TaxContPriceText.Text))
+            {
+                MessageBox.Show("Сума трябва да е число");
+                return;
+            }
+
+            double price = double.Parse(TaxContPriceText.Text);
+            DateTime taxContDate = TaxContDateTime.Value;
+
+            contributionService.CreateTaxContribution(taxContDate,price);
+
+            GenerateTaxTabData();
         }
     }
 }

@@ -114,6 +114,7 @@
     <Compile Include="Services\Contracts\IBatteryService.cs" />
     <Compile Include="Services\Contracts\IBrakeFluidService.cs" />
     <Compile Include="Services\Contracts\IClutchService.cs" />
+    <Compile Include="Services\Contracts\IContributionService.cs" />
     <Compile Include="Services\Contracts\ICoolantService.cs" />
     <Compile Include="Services\Contracts\IFrontBrakesService.cs" />
     <Compile Include="Services\Contracts\IMaintenanceService.cs" />
@@ -122,8 +123,10 @@
     <Compile Include="Services\Contracts\IOilService.cs" />
     <Compile Include="Services\Contracts\IRearBrakesService.cs" />
     <Compile Include="Services\Contracts\IReviewService.cs" />
+    <Compile Include="Services\Contracts\ITaxService.cs" />
     <Compile Include="Services\Contracts\ITiresService.cs" />
     <Compile Include="Services\Contracts\IUserService.cs" />
+    <Compile Include="Services\ContributionService.cs" />
     <Compile Include="Services\CoolantService.cs" />
     <Compile Include="Services\FrontBrakesService.cs" />
     <Compile Include="Services\MaintenanceService.cs" />
@@ -132,8 +135,11 @@
     <Compile Include="Services\OilService.cs" />
     <Compile Include="Services\RearBrakesService.cs" />
     <Compile Include="Services\ReviewService.cs" />
+    <Compile Include="Services\TaxService.cs" />
     <Compile Include="Services\TiresService.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="ViewModels\Review\ReviewHeaderId.cs" />
+    <Compile Include="ViewModels\Tax\LastTaxPayedViewModel.cs" />
     <Compile Include="ViewModels\UserMotorcycleViewModel.cs" />
     <EmbeddedResource Include="AddMaintenanceForm.resx">
       <DependentUpon>AddMaintenanceForm.cs</DependentUpon>

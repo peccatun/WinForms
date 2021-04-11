@@ -1,6 +1,7 @@
 ﻿using MotorcycleMaintenance.Globals;
 using MotorcycleMaintenance.InputModels.Reviews;
 using MotorcycleMaintenance.Services.Contracts;
+using MotorcycleMaintenance.ViewModels.Review;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,6 +12,7 @@ namespace MotorcycleMaintenance.Services
 {
     public class ReviewService : IReviewService
     {
+        private readonly Logger.Logger logger;
         private readonly OdbcConnection con;
         private readonly OdbcCommand com;
 
@@ -18,6 +20,8 @@ namespace MotorcycleMaintenance.Services
         {
             con = new OdbcConnection(GlobalConstants.ConnectionsString);
             com = new OdbcCommand(" ", con);
+            logger = new Logger.Logger();
+
         }
 
         public void CreateReview(CreateReviewInputModel model)
@@ -78,13 +82,57 @@ namespace MotorcycleMaintenance.Services
             }
             catch (Exception ex)
             {
-
-                throw;
+                logger.LogExceptionText(ex.ToString());
+                throw ex;
             }
             finally
             {
                 con.Close();
             }
+        }
+
+        public List<ReviewHeaderId> GetReviewHeaderId(int motorcycleId)
+        {
+            List<ReviewHeaderId> reviewHeadAndId = new List<ReviewHeaderId>();
+
+            try
+            {
+                StringBuilder selectQuerySb = new StringBuilder();
+
+                selectQuerySb.Append(" select r.id, r.reviewheader ");
+                selectQuerySb.Append(" from review r ");
+                selectQuerySb.Append($@" where r.motorcycledata_id = {motorcycleId} and r.enddate > '{DateTime.Now.ToString("dd.MM.yyyy")}' ");
+
+                com.CommandText = selectQuerySb.ToString();
+
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+
+                using (var reader = com.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ReviewHeaderId item = new ReviewHeaderId
+                        {
+                            Key = reader["reviewheader"].ToString(),
+                            Value = int.Parse(reader["id"].ToString()),
+                        };
+                        reviewHeadAndId.Add(item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogExceptionText(ex.ToString());
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return reviewHeadAndId;
         }
 
         public bool HasAngecy(int motorcycleId)

@@ -43,6 +43,7 @@ namespace MotorcycleMaintenance
             this.label1 = new System.Windows.Forms.Label();
             this.MaintenanceBox = new System.Windows.Forms.ComboBox();
             this.ReviewTab = new System.Windows.Forms.TabPage();
+            this.InformationLabel = new System.Windows.Forms.Label();
             this.NewReviwGroup = new System.Windows.Forms.GroupBox();
             this.InsuranceAngecyCombo = new System.Windows.Forms.ComboBox();
             this.InsuranceAngencyLabel = new System.Windows.Forms.Label();
@@ -62,28 +63,50 @@ namespace MotorcycleMaintenance
             this.AddReviewButton = new System.Windows.Forms.Button();
             this.AddContributionGroup = new System.Windows.Forms.GroupBox();
             this.LevaLabel = new System.Windows.Forms.Label();
-            this.ContribuionPriceTextBox = new System.Windows.Forms.TextBox();
+            this.ContributionPriceTextBox = new System.Windows.Forms.TextBox();
             this.ContributionPriceLabel = new System.Windows.Forms.Label();
             this.ContribuionDateLabel = new System.Windows.Forms.Label();
             this.ContributionDate = new System.Windows.Forms.DateTimePicker();
             this.ReviewNumberComboBox = new System.Windows.Forms.ComboBox();
             this.AddContributionButton = new System.Windows.Forms.Button();
             this.ReviewNumberLabel = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.InformationLabel = new System.Windows.Forms.Label();
+            this.TaxTab = new System.Windows.Forms.TabPage();
+            this.TaxContGroup = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.MakeTaxContButton = new System.Windows.Forms.Button();
+            this.TaxContDateTime = new System.Windows.Forms.DateTimePicker();
+            this.TaxContPriceText = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TaxContPriceLabel = new System.Windows.Forms.Label();
+            this.TaxGroup = new System.Windows.Forms.GroupBox();
+            this.TaxPriceLvLabel = new System.Windows.Forms.Label();
+            this.PayTaxButton = new System.Windows.Forms.Button();
+            this.TaxContsCountGroup = new System.Windows.Forms.GroupBox();
+            this.TwoTaxContRadio = new System.Windows.Forms.RadioButton();
+            this.OneTaxContRadio = new System.Windows.Forms.RadioButton();
+            this.TaxPayDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.TaxPriceTextBox = new System.Windows.Forms.TextBox();
+            this.TaxPayDayLabel = new System.Windows.Forms.Label();
+            this.TaxPriceLabel = new System.Windows.Forms.Label();
+            this.TaxInformationLabel = new System.Windows.Forms.Label();
             this.MaintenanceControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.ReviewTab.SuspendLayout();
             this.NewReviwGroup.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.AddContributionGroup.SuspendLayout();
+            this.TaxTab.SuspendLayout();
+            this.TaxContGroup.SuspendLayout();
+            this.TaxGroup.SuspendLayout();
+            this.TaxContsCountGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // MaintenanceControl
             // 
             this.MaintenanceControl.Controls.Add(this.tabPage1);
             this.MaintenanceControl.Controls.Add(this.ReviewTab);
-            this.MaintenanceControl.Controls.Add(this.tabPage3);
+            this.MaintenanceControl.Controls.Add(this.TaxTab);
+            this.MaintenanceControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaintenanceControl.Location = new System.Drawing.Point(13, 13);
             this.MaintenanceControl.Name = "MaintenanceControl";
             this.MaintenanceControl.SelectedIndex = 0;
@@ -106,18 +129,18 @@ namespace MotorcycleMaintenance
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.MaintenanceBox);
             this.tabPage1.ForeColor = System.Drawing.SystemColors.Control;
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 27);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(502, 422);
+            this.tabPage1.Size = new System.Drawing.Size(502, 417);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Mantainance";
+            this.tabPage1.Text = "Поддръжка";
             // 
             // KilometersOnChangeTextBox
             // 
             this.KilometersOnChangeTextBox.Location = new System.Drawing.Point(9, 192);
             this.KilometersOnChangeTextBox.Name = "KilometersOnChangeTextBox";
-            this.KilometersOnChangeTextBox.Size = new System.Drawing.Size(184, 20);
+            this.KilometersOnChangeTextBox.Size = new System.Drawing.Size(184, 24);
             this.KilometersOnChangeTextBox.TabIndex = 10;
             // 
             // KiloetersOnChangeLabel
@@ -147,21 +170,21 @@ namespace MotorcycleMaintenance
             // 
             this.ChangeDateDatePicker.Location = new System.Drawing.Point(6, 256);
             this.ChangeDateDatePicker.Name = "ChangeDateDatePicker";
-            this.ChangeDateDatePicker.Size = new System.Drawing.Size(200, 20);
+            this.ChangeDateDatePicker.Size = new System.Drawing.Size(200, 24);
             this.ChangeDateDatePicker.TabIndex = 7;
             // 
             // MakeTextBox
             // 
             this.MakeTextBox.Location = new System.Drawing.Point(6, 142);
             this.MakeTextBox.Name = "MakeTextBox";
-            this.MakeTextBox.Size = new System.Drawing.Size(184, 20);
+            this.MakeTextBox.Size = new System.Drawing.Size(184, 24);
             this.MakeTextBox.TabIndex = 6;
             // 
             // PriceTextBox
             // 
             this.PriceTextBox.Location = new System.Drawing.Point(6, 91);
             this.PriceTextBox.Name = "PriceTextBox";
-            this.PriceTextBox.Size = new System.Drawing.Size(104, 20);
+            this.PriceTextBox.Size = new System.Drawing.Size(104, 24);
             this.PriceTextBox.TabIndex = 5;
             // 
             // ChangeDateLabel
@@ -201,11 +224,11 @@ namespace MotorcycleMaintenance
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Gainsboro;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(25, 6);
+            this.label1.Location = new System.Drawing.Point(6, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 16);
+            this.label1.Size = new System.Drawing.Size(92, 18);
             this.label1.TabIndex = 1;
             this.label1.Text = "Mantainance";
             // 
@@ -214,7 +237,7 @@ namespace MotorcycleMaintenance
             this.MaintenanceBox.FormattingEnabled = true;
             this.MaintenanceBox.Location = new System.Drawing.Point(6, 25);
             this.MaintenanceBox.Name = "MaintenanceBox";
-            this.MaintenanceBox.Size = new System.Drawing.Size(184, 21);
+            this.MaintenanceBox.Size = new System.Drawing.Size(187, 26);
             this.MaintenanceBox.TabIndex = 0;
             // 
             // ReviewTab
@@ -223,12 +246,23 @@ namespace MotorcycleMaintenance
             this.ReviewTab.Controls.Add(this.InformationLabel);
             this.ReviewTab.Controls.Add(this.NewReviwGroup);
             this.ReviewTab.Controls.Add(this.AddContributionGroup);
-            this.ReviewTab.Location = new System.Drawing.Point(4, 22);
+            this.ReviewTab.Location = new System.Drawing.Point(4, 27);
             this.ReviewTab.Name = "ReviewTab";
             this.ReviewTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ReviewTab.Size = new System.Drawing.Size(502, 422);
+            this.ReviewTab.Size = new System.Drawing.Size(502, 417);
             this.ReviewTab.TabIndex = 1;
             this.ReviewTab.Text = "Застраховка";
+            // 
+            // InformationLabel
+            // 
+            this.InformationLabel.AutoSize = true;
+            this.InformationLabel.Font = new System.Drawing.Font("Palatino Linotype", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InformationLabel.Location = new System.Drawing.Point(1, 87);
+            this.InformationLabel.Name = "InformationLabel";
+            this.InformationLabel.Size = new System.Drawing.Size(15, 32);
+            this.InformationLabel.TabIndex = 5;
+            this.InformationLabel.Text = "\r\n";
+            this.InformationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // NewReviwGroup
             // 
@@ -423,7 +457,7 @@ namespace MotorcycleMaintenance
             // 
             this.AddContributionGroup.BackColor = System.Drawing.Color.LightGray;
             this.AddContributionGroup.Controls.Add(this.LevaLabel);
-            this.AddContributionGroup.Controls.Add(this.ContribuionPriceTextBox);
+            this.AddContributionGroup.Controls.Add(this.ContributionPriceTextBox);
             this.AddContributionGroup.Controls.Add(this.ContributionPriceLabel);
             this.AddContributionGroup.Controls.Add(this.ContribuionDateLabel);
             this.AddContributionGroup.Controls.Add(this.ContributionDate);
@@ -447,13 +481,13 @@ namespace MotorcycleMaintenance
             this.LevaLabel.TabIndex = 7;
             this.LevaLabel.Text = "лв.";
             // 
-            // ContribuionPriceTextBox
+            // ContributionPriceTextBox
             // 
-            this.ContribuionPriceTextBox.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ContribuionPriceTextBox.Location = new System.Drawing.Point(382, 56);
-            this.ContribuionPriceTextBox.Name = "ContribuionPriceTextBox";
-            this.ContribuionPriceTextBox.Size = new System.Drawing.Size(43, 24);
-            this.ContribuionPriceTextBox.TabIndex = 6;
+            this.ContributionPriceTextBox.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.ContributionPriceTextBox.Location = new System.Drawing.Point(382, 56);
+            this.ContributionPriceTextBox.Name = "ContributionPriceTextBox";
+            this.ContributionPriceTextBox.Size = new System.Drawing.Size(43, 24);
+            this.ContributionPriceTextBox.TabIndex = 6;
             // 
             // ContributionPriceLabel
             // 
@@ -499,6 +533,7 @@ namespace MotorcycleMaintenance
             this.AddContributionButton.TabIndex = 2;
             this.AddContributionButton.Text = "Вноска";
             this.AddContributionButton.UseVisualStyleBackColor = true;
+            this.AddContributionButton.Click += new System.EventHandler(this.AddContributionButton_Click);
             // 
             // ReviewNumberLabel
             // 
@@ -510,26 +545,200 @@ namespace MotorcycleMaintenance
             this.ReviewNumberLabel.TabIndex = 1;
             this.ReviewNumberLabel.Text = "Застраховка номер";
             // 
-            // tabPage3
+            // TaxTab
             // 
-            this.tabPage3.BackColor = System.Drawing.Color.Gainsboro;
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(502, 422);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
+            this.TaxTab.BackColor = System.Drawing.Color.Gainsboro;
+            this.TaxTab.Controls.Add(this.TaxInformationLabel);
+            this.TaxTab.Controls.Add(this.TaxContGroup);
+            this.TaxTab.Controls.Add(this.TaxGroup);
+            this.TaxTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TaxTab.Location = new System.Drawing.Point(4, 27);
+            this.TaxTab.Name = "TaxTab";
+            this.TaxTab.Padding = new System.Windows.Forms.Padding(3);
+            this.TaxTab.Size = new System.Drawing.Size(502, 417);
+            this.TaxTab.TabIndex = 2;
+            this.TaxTab.Text = "Данък";
             // 
-            // InformationLabel
+            // TaxContGroup
             // 
-            this.InformationLabel.AutoSize = true;
-            this.InformationLabel.Font = new System.Drawing.Font("Palatino Linotype", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InformationLabel.Location = new System.Drawing.Point(1, 87);
-            this.InformationLabel.Name = "InformationLabel";
-            this.InformationLabel.Size = new System.Drawing.Size(15, 32);
-            this.InformationLabel.TabIndex = 5;
-            this.InformationLabel.Text = "\r\n";
-            this.InformationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.TaxContGroup.BackColor = System.Drawing.Color.LightGray;
+            this.TaxContGroup.Controls.Add(this.label2);
+            this.TaxContGroup.Controls.Add(this.MakeTaxContButton);
+            this.TaxContGroup.Controls.Add(this.TaxContDateTime);
+            this.TaxContGroup.Controls.Add(this.TaxContPriceText);
+            this.TaxContGroup.Controls.Add(this.label3);
+            this.TaxContGroup.Controls.Add(this.TaxContPriceLabel);
+            this.TaxContGroup.Location = new System.Drawing.Point(7, 7);
+            this.TaxContGroup.Name = "TaxContGroup";
+            this.TaxContGroup.Size = new System.Drawing.Size(483, 116);
+            this.TaxContGroup.TabIndex = 1;
+            this.TaxContGroup.TabStop = false;
+            this.TaxContGroup.Text = "Вноска";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(136, 91);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 18);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "лв.";
+            // 
+            // MakeTaxContButton
+            // 
+            this.MakeTaxContButton.Location = new System.Drawing.Point(340, 71);
+            this.MakeTaxContButton.Name = "MakeTaxContButton";
+            this.MakeTaxContButton.Size = new System.Drawing.Size(137, 41);
+            this.MakeTaxContButton.TabIndex = 4;
+            this.MakeTaxContButton.Text = "Направи вноска";
+            this.MakeTaxContButton.UseVisualStyleBackColor = true;
+            this.MakeTaxContButton.Click += new System.EventHandler(this.MakeTaxContButton_Click);
+            // 
+            // TaxContDateTime
+            // 
+            this.TaxContDateTime.Location = new System.Drawing.Point(6, 47);
+            this.TaxContDateTime.Name = "TaxContDateTime";
+            this.TaxContDateTime.Size = new System.Drawing.Size(242, 24);
+            this.TaxContDateTime.TabIndex = 3;
+            // 
+            // TaxContPriceText
+            // 
+            this.TaxContPriceText.Location = new System.Drawing.Point(59, 88);
+            this.TaxContPriceText.Name = "TaxContPriceText";
+            this.TaxContPriceText.Size = new System.Drawing.Size(71, 24);
+            this.TaxContPriceText.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(103, 18);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Направена на";
+            // 
+            // TaxContPriceLabel
+            // 
+            this.TaxContPriceLabel.AutoSize = true;
+            this.TaxContPriceLabel.Location = new System.Drawing.Point(8, 91);
+            this.TaxContPriceLabel.Name = "TaxContPriceLabel";
+            this.TaxContPriceLabel.Size = new System.Drawing.Size(45, 18);
+            this.TaxContPriceLabel.TabIndex = 0;
+            this.TaxContPriceLabel.Text = "Сума";
+            // 
+            // TaxGroup
+            // 
+            this.TaxGroup.BackColor = System.Drawing.Color.LightGray;
+            this.TaxGroup.Controls.Add(this.TaxPriceLvLabel);
+            this.TaxGroup.Controls.Add(this.PayTaxButton);
+            this.TaxGroup.Controls.Add(this.TaxContsCountGroup);
+            this.TaxGroup.Controls.Add(this.TaxPayDatePicker);
+            this.TaxGroup.Controls.Add(this.TaxPriceTextBox);
+            this.TaxGroup.Controls.Add(this.TaxPayDayLabel);
+            this.TaxGroup.Controls.Add(this.TaxPriceLabel);
+            this.TaxGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TaxGroup.Location = new System.Drawing.Point(7, 165);
+            this.TaxGroup.Name = "TaxGroup";
+            this.TaxGroup.Size = new System.Drawing.Size(489, 246);
+            this.TaxGroup.TabIndex = 0;
+            this.TaxGroup.TabStop = false;
+            this.TaxGroup.Text = "Ново плащане";
+            // 
+            // TaxPriceLvLabel
+            // 
+            this.TaxPriceLvLabel.AutoSize = true;
+            this.TaxPriceLvLabel.Location = new System.Drawing.Point(90, 81);
+            this.TaxPriceLvLabel.Name = "TaxPriceLvLabel";
+            this.TaxPriceLvLabel.Size = new System.Drawing.Size(32, 20);
+            this.TaxPriceLvLabel.TabIndex = 6;
+            this.TaxPriceLvLabel.Text = "лв.";
+            // 
+            // PayTaxButton
+            // 
+            this.PayTaxButton.ForeColor = System.Drawing.Color.ForestGreen;
+            this.PayTaxButton.Location = new System.Drawing.Point(340, 199);
+            this.PayTaxButton.Name = "PayTaxButton";
+            this.PayTaxButton.Size = new System.Drawing.Size(132, 41);
+            this.PayTaxButton.TabIndex = 5;
+            this.PayTaxButton.Text = "Плати";
+            this.PayTaxButton.UseVisualStyleBackColor = true;
+            this.PayTaxButton.Click += new System.EventHandler(this.PayTaxButton_Click);
+            // 
+            // TaxContsCountGroup
+            // 
+            this.TaxContsCountGroup.BackColor = System.Drawing.Color.Gainsboro;
+            this.TaxContsCountGroup.Controls.Add(this.TwoTaxContRadio);
+            this.TaxContsCountGroup.Controls.Add(this.OneTaxContRadio);
+            this.TaxContsCountGroup.Location = new System.Drawing.Point(6, 140);
+            this.TaxContsCountGroup.Name = "TaxContsCountGroup";
+            this.TaxContsCountGroup.Size = new System.Drawing.Size(171, 100);
+            this.TaxContsCountGroup.TabIndex = 4;
+            this.TaxContsCountGroup.TabStop = false;
+            this.TaxContsCountGroup.Text = "Вноски";
+            // 
+            // TwoTaxContRadio
+            // 
+            this.TwoTaxContRadio.AutoSize = true;
+            this.TwoTaxContRadio.Location = new System.Drawing.Point(7, 57);
+            this.TwoTaxContRadio.Name = "TwoTaxContRadio";
+            this.TwoTaxContRadio.Size = new System.Drawing.Size(92, 24);
+            this.TwoTaxContRadio.TabIndex = 1;
+            this.TwoTaxContRadio.TabStop = true;
+            this.TwoTaxContRadio.Text = "2 вноска";
+            this.TwoTaxContRadio.UseVisualStyleBackColor = true;
+            // 
+            // OneTaxContRadio
+            // 
+            this.OneTaxContRadio.AutoSize = true;
+            this.OneTaxContRadio.Location = new System.Drawing.Point(7, 26);
+            this.OneTaxContRadio.Name = "OneTaxContRadio";
+            this.OneTaxContRadio.Size = new System.Drawing.Size(92, 24);
+            this.OneTaxContRadio.TabIndex = 0;
+            this.OneTaxContRadio.TabStop = true;
+            this.OneTaxContRadio.Text = "1 вноски";
+            this.OneTaxContRadio.UseVisualStyleBackColor = true;
+            // 
+            // TaxPayDatePicker
+            // 
+            this.TaxPayDatePicker.Location = new System.Drawing.Point(212, 49);
+            this.TaxPayDatePicker.Name = "TaxPayDatePicker";
+            this.TaxPayDatePicker.Size = new System.Drawing.Size(271, 26);
+            this.TaxPayDatePicker.TabIndex = 3;
+            // 
+            // TaxPriceTextBox
+            // 
+            this.TaxPriceTextBox.Location = new System.Drawing.Point(6, 78);
+            this.TaxPriceTextBox.Name = "TaxPriceTextBox";
+            this.TaxPriceTextBox.Size = new System.Drawing.Size(78, 26);
+            this.TaxPriceTextBox.TabIndex = 2;
+            // 
+            // TaxPayDayLabel
+            // 
+            this.TaxPayDayLabel.AutoSize = true;
+            this.TaxPayDayLabel.Location = new System.Drawing.Point(361, 26);
+            this.TaxPayDayLabel.Name = "TaxPayDayLabel";
+            this.TaxPayDayLabel.Size = new System.Drawing.Size(116, 20);
+            this.TaxPayDayLabel.TabIndex = 1;
+            this.TaxPayDayLabel.Text = "Дата платено";
+            // 
+            // TaxPriceLabel
+            // 
+            this.TaxPriceLabel.AutoSize = true;
+            this.TaxPriceLabel.Location = new System.Drawing.Point(6, 55);
+            this.TaxPriceLabel.Name = "TaxPriceLabel";
+            this.TaxPriceLabel.Size = new System.Drawing.Size(47, 20);
+            this.TaxPriceLabel.TabIndex = 0;
+            this.TaxPriceLabel.Text = "Сума";
+            // 
+            // TaxInformationLabel
+            // 
+            this.TaxInformationLabel.AutoSize = true;
+            this.TaxInformationLabel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.TaxInformationLabel.Font = new System.Drawing.Font("Courier New", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TaxInformationLabel.Location = new System.Drawing.Point(7, 129);
+            this.TaxInformationLabel.Name = "TaxInformationLabel";
+            this.TaxInformationLabel.Size = new System.Drawing.Size(0, 27);
+            this.TaxInformationLabel.TabIndex = 2;
             // 
             // AddMaintenanceForm
             // 
@@ -551,6 +760,14 @@ namespace MotorcycleMaintenance
             this.groupBox1.PerformLayout();
             this.AddContributionGroup.ResumeLayout(false);
             this.AddContributionGroup.PerformLayout();
+            this.TaxTab.ResumeLayout(false);
+            this.TaxTab.PerformLayout();
+            this.TaxContGroup.ResumeLayout(false);
+            this.TaxContGroup.PerformLayout();
+            this.TaxGroup.ResumeLayout(false);
+            this.TaxGroup.PerformLayout();
+            this.TaxContsCountGroup.ResumeLayout(false);
+            this.TaxContsCountGroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -560,7 +777,7 @@ namespace MotorcycleMaintenance
         private System.Windows.Forms.TabControl MaintenanceControl;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage ReviewTab;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage TaxTab;
         private System.Windows.Forms.DateTimePicker ChangeDateDatePicker;
         private System.Windows.Forms.TextBox MakeTextBox;
         private System.Windows.Forms.TextBox PriceTextBox;
@@ -577,7 +794,7 @@ namespace MotorcycleMaintenance
         private System.Windows.Forms.Label ReviewNumberLabel;
         private System.Windows.Forms.Button AddContributionButton;
         private System.Windows.Forms.DateTimePicker ContributionDate;
-        private System.Windows.Forms.TextBox ContribuionPriceTextBox;
+        private System.Windows.Forms.TextBox ContributionPriceTextBox;
         private System.Windows.Forms.Label ContributionPriceLabel;
         private System.Windows.Forms.Label ContribuionDateLabel;
         private System.Windows.Forms.GroupBox NewReviwGroup;
@@ -599,5 +816,23 @@ namespace MotorcycleMaintenance
         private System.Windows.Forms.Label InsuranceAngencyLabel;
         private System.Windows.Forms.ComboBox InsuranceAngecyCombo;
         private System.Windows.Forms.Label InformationLabel;
+        private System.Windows.Forms.GroupBox TaxContGroup;
+        private System.Windows.Forms.GroupBox TaxGroup;
+        private System.Windows.Forms.Label TaxPriceLvLabel;
+        private System.Windows.Forms.Button PayTaxButton;
+        private System.Windows.Forms.GroupBox TaxContsCountGroup;
+        private System.Windows.Forms.RadioButton TwoTaxContRadio;
+        private System.Windows.Forms.RadioButton OneTaxContRadio;
+        private System.Windows.Forms.DateTimePicker TaxPayDatePicker;
+        private System.Windows.Forms.TextBox TaxPriceTextBox;
+        private System.Windows.Forms.Label TaxPayDayLabel;
+        private System.Windows.Forms.Label TaxPriceLabel;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button MakeTaxContButton;
+        private System.Windows.Forms.DateTimePicker TaxContDateTime;
+        private System.Windows.Forms.TextBox TaxContPriceText;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label TaxContPriceLabel;
+        private System.Windows.Forms.Label TaxInformationLabel;
     }
 }

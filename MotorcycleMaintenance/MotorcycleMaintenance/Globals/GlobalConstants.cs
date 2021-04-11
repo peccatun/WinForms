@@ -7,7 +7,10 @@ namespace MotorcycleMaintenance.Globals
     {
         //public const string ConnectionsString = "DSN=MotorcycleMaintenance;Server=localhost;User=SYSDBA;Password=masterkey;Database=D:\\C#Experiments\\MotorcycleMaintenance\\MOTORCYCLEMAINTENANCEDB.FDB";
 
-        public const string ConnectionsString = @"DSN=MotorcycleMaintenance;Server=127.0.0.1;User=SYSDBA;Password=masterkey;Database=C:\Users\Petko\Desktop\MOTORCYCLEMAINTENANCEDB.FDB";
+        //C:\Users\Petko\Desktop\MOTORCYCLEMAINTENANCEDB.FDB";
+
+
+        public static string ConnectionsString = @"DSN=MotorcycleMaintenance;Server=127.0.0.1;User=SYSDBA;Password=masterkey;Database=";
 
 
         public const string MessageBoxTopInfo = "Motorcycle Mantenance";
@@ -45,6 +48,11 @@ namespace MotorcycleMaintenance.Globals
 
                 public static string LogFilePath = $@"{LogFolderPath}\{LogFileName}";
             }
+        }
+
+        public static class DbPath
+        {
+            public static string DbPathFilePath = $"{Directory.GetCurrentDirectory()}\\conf\\DbPath.txt" ;
         }
     }
 }

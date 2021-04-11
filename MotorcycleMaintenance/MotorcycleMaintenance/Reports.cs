@@ -16,15 +16,15 @@ namespace MotorcycleMaintenance
 {
     public partial class Reports : Form
     {
-        private bool isOilFilter = false;
-
         private readonly IMaintenanceService maintenanceService;
+        private readonly Logger.Logger logger;
         private readonly OdbcConnection con;
         private readonly OdbcCommand com;
 
         public Reports()
         {
             InitializeComponent();
+            logger = new Logger.Logger();
             maintenanceService = new MaintenanceService();
             con = new OdbcConnection(GlobalConstants.ConnectionsString);
             com = new OdbcCommand(" ", con);
@@ -83,13 +83,11 @@ namespace MotorcycleMaintenance
                         MaintenanceInfoGrid.Rows[index].Cells[5].Value = reader["KilometersDriven"].ToString();
                         MaintenanceInfoGrid.Rows[index].Cells[6].Value = reader["KilometersOnChange"].ToString();
                     }
-
-                    isOilFilter = false;
                 }
             }
             catch (Exception ex)
             {
-
+                logger.LogExceptionText(ex.ToString(),$"Thrown in reports with query:{query}, towa se e sluchilo kogato si se opital da pylnish datagrida");
             }
             finally
             {
