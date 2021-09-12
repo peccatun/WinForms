@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "xHk8iEVIKvaxQZwT+lhmlwj/xYIr3DzO4ZG/RgnKsVZ+erd+xeb9+DP/cOngMaVahgwahzF/TSJCgdpQA0/90A==",
+  "success": true,
+  "projectFilePath": "D:\\IncomeManager\\IncomeManager\\BLL\\BLL.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Petko\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\Petko\\.nuget\\packages\\system.data.odbc\\5.0.0\\system.data.odbc.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

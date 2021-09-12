@@ -29,5 +29,11 @@ namespace IncomeManager
             addUserForm.Show();
             WindowState = FormWindowState.Minimized;
         }
+
+        private void btnAddSell_Click(object sender, EventArgs e)
+        {
+            AddSellForm addSellForm = new AddSellForm();
+            addSellForm.Show();
+        }
     }
 }
