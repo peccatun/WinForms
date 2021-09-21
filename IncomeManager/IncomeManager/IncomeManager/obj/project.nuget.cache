@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "tm8Bmhn1LmjhIUoU0e7QNDgcwSvf/0sllbecYgFCqw8cEK6SKxzB7I6gTLeamn8d8cmMtyulyzVg8Wf3r4tbQg==",
+  "dgSpecHash": "oqIIVS/BpPHjDpdzaJM5SFKVgWH+VXD+OR72Um0hikOSvVQgXf1aCS91KDmMaWgbbcH0jmKQyAJgZObG+tgntA==",
   "success": true,
   "projectFilePath": "D:\\IncomeManager\\IncomeManager\\IncomeManager\\IncomeManager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Petko\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\Petko\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Petko\\.nuget\\packages\\system.data.odbc\\5.0.0\\system.data.odbc.5.0.0.nupkg.sha512"
   ],
   "logs": []

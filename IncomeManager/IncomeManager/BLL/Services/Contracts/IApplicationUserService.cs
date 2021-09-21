@@ -5,6 +5,6 @@ namespace BLL.Services.Contracts
 {
     public interface IApplicationUserService
     {
-        Task InsertApplicationUserAsync(ApplicationUserInputModel inputModel);
+        Task InsertApplicationUserAsync(string inputModelJson);
     }
 }

@@ -29,3 +29,4 @@ D:\IncomeManager\IncomeManager\IncomeManager\obj\Debug\net5.0-windows\IncomeMana
 D:\IncomeManager\IncomeManager\IncomeManager\obj\Debug\net5.0-windows\IncomeManager.AddCategory.resources
 D:\IncomeManager\IncomeManager\IncomeManager\obj\Debug\net5.0-windows\IncomeManager.AddIncomeForm.resources
 D:\IncomeManager\IncomeManager\IncomeManager\obj\Debug\net5.0-windows\IncomeManager.AddSellForm.resources
+D:\IncomeManager\IncomeManager\IncomeManager\bin\Debug\net5.0-windows\Newtonsoft.Json.dll

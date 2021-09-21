@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Odbc;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace BLL.Services
 {
@@ -20,16 +21,18 @@ namespace BLL.Services
             com = new OdbcCommand(" ", con);
         }
 
-        public async Task AddCategory(AddCategoryInputModel model)
+        public async Task AddCategory(string inputModel)
         {
+            AddCategoryInputModel model = JsonConvert.DeserializeObject<AddCategoryInputModel>(inputModel);
+
             string insertStatement = $"insert into category(is_del, name)values(0, '{model.Name}')";
 
             await CommandExecuter.ExecuteNonQuaryAsync(insertStatement);
         }
 
-        public async Task<List<ComboBoxItemViewModel>> GetCategoriesAsync()
+        public async Task<string> GetCategoriesAsync()
         {
-            List<ComboBoxItemViewModel> comboItems = null;
+            string comboItemsJson = null;
 
             try
             {
@@ -42,24 +45,26 @@ namespace BLL.Services
                     con.Open();
                 }
 
-                comboItems = new List<ComboBoxItemViewModel>();
+                List<CategoryViewModel> comboItems = new List<CategoryViewModel>();
 
                 using (var reader = await com.ExecuteReaderAsync())
                 {
                     while (await reader.ReadAsync())
                     {
-                        string key = reader["name"].ToString();
-                        string value = reader["id"].ToString();
+                        string id = reader["id"].ToString();
+                        string name = reader["name"].ToString();
 
-                        ComboBoxItemViewModel comboBoxItemViewModel = new ComboBoxItemViewModel
+                        CategoryViewModel comboBoxItemViewModel = new CategoryViewModel
                         {
-                            Key = key,
-                            Value = value,
+                            Id = id,
+                            Name = name,
                         };
 
                         comboItems.Add(comboBoxItemViewModel);
                     }
                 }
+
+                comboItemsJson = JsonConvert.SerializeObject(comboItems);
             }
             catch (Exception ex)
             {
@@ -70,7 +75,7 @@ namespace BLL.Services
                 con.Close();
             }
 
-            return comboItems;
+            return comboItemsJson;
         }
     }
 }

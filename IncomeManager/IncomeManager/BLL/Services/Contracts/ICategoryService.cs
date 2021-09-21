@@ -7,8 +7,8 @@ namespace BLL.Services.Contracts
 {
     public interface ICategoryService
     {
-        Task AddCategory(AddCategoryInputModel model);
+        Task AddCategory(string inputModel);
 
-        Task<List<ComboBoxItemViewModel>> GetCategoriesAsync();
+        Task<string> GetCategoriesAsync();
     }
 }

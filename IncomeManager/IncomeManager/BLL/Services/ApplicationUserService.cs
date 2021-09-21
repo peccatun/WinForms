@@ -1,5 +1,6 @@
 ﻿using BLL.InputModels.ApplicationUser;
 using BLL.Services.Contracts;
+using Newtonsoft.Json;
 using System;
 using System.Data.Odbc;
 using System.Threading.Tasks;
@@ -16,8 +17,10 @@ namespace BLL.Services
             con = new OdbcConnection(GlobalConstants.ConnectionString);
             com = new OdbcCommand(" ", con);
         }
-        public async Task InsertApplicationUserAsync(ApplicationUserInputModel inputModel)
+        public async Task InsertApplicationUserAsync(string inputModelJson)
         {
+            ApplicationUserInputModel inputModel = JsonConvert.DeserializeObject<ApplicationUserInputModel>(inputModelJson);
+
             string currentDate = DateTime.Now.ToString("dd.MM.yyyy");
             string insertStatement = $"insert into application_user(is_del, username, created_on)values(0,'{inputModel.UserName}', '{currentDate}')";
 
