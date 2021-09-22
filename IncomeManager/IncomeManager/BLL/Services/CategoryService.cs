@@ -21,7 +21,7 @@ namespace BLL.Services
             com = new OdbcCommand(" ", con);
         }
 
-        public async Task AddCategory(string inputModel)
+        public async Task AddCategoryAsync(string inputModel)
         {
             AddCategoryInputModel model = JsonConvert.DeserializeObject<AddCategoryInputModel>(inputModel);
 

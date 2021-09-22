@@ -43,33 +43,36 @@ namespace IncomeManager
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(159, 70);
+            this.labelName.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelName.Location = new System.Drawing.Point(32, 68);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(39, 15);
+            this.labelName.Size = new System.Drawing.Size(49, 20);
             this.labelName.TabIndex = 0;
             this.labelName.Text = "Name";
             // 
             // labelCategory
             // 
             this.labelCategory.AutoSize = true;
-            this.labelCategory.Location = new System.Drawing.Point(149, 157);
+            this.labelCategory.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelCategory.Location = new System.Drawing.Point(12, 113);
             this.labelCategory.Name = "labelCategory";
-            this.labelCategory.Size = new System.Drawing.Size(55, 15);
+            this.labelCategory.Size = new System.Drawing.Size(69, 20);
             this.labelCategory.TabIndex = 1;
             this.labelCategory.Text = "Category";
             // 
             // labelPrice
             // 
             this.labelPrice.AutoSize = true;
-            this.labelPrice.Location = new System.Drawing.Point(159, 235);
+            this.labelPrice.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelPrice.Location = new System.Drawing.Point(40, 166);
             this.labelPrice.Name = "labelPrice";
-            this.labelPrice.Size = new System.Drawing.Size(33, 15);
+            this.labelPrice.Size = new System.Drawing.Size(41, 20);
             this.labelPrice.TabIndex = 2;
             this.labelPrice.Text = "Price";
             // 
             // textName
             // 
-            this.textName.Location = new System.Drawing.Point(103, 88);
+            this.textName.Location = new System.Drawing.Point(89, 65);
             this.textName.Name = "textName";
             this.textName.Size = new System.Drawing.Size(147, 23);
             this.textName.TabIndex = 3;
@@ -77,14 +80,14 @@ namespace IncomeManager
             // comboCategory
             // 
             this.comboCategory.FormattingEnabled = true;
-            this.comboCategory.Location = new System.Drawing.Point(103, 175);
+            this.comboCategory.Location = new System.Drawing.Point(89, 113);
             this.comboCategory.Name = "comboCategory";
             this.comboCategory.Size = new System.Drawing.Size(147, 23);
             this.comboCategory.TabIndex = 4;
             // 
             // btnNewCategory
             // 
-            this.btnNewCategory.Location = new System.Drawing.Point(256, 174);
+            this.btnNewCategory.Location = new System.Drawing.Point(242, 113);
             this.btnNewCategory.Name = "btnNewCategory";
             this.btnNewCategory.Size = new System.Drawing.Size(42, 23);
             this.btnNewCategory.TabIndex = 5;
@@ -94,35 +97,36 @@ namespace IncomeManager
             // 
             // textPrice
             // 
-            this.textPrice.Location = new System.Drawing.Point(103, 253);
+            this.textPrice.Location = new System.Drawing.Point(89, 163);
             this.textPrice.Name = "textPrice";
-            this.textPrice.Size = new System.Drawing.Size(147, 23);
+            this.textPrice.Size = new System.Drawing.Size(67, 23);
             this.textPrice.TabIndex = 6;
             // 
             // labelHead
             // 
             this.labelHead.AutoSize = true;
-            this.labelHead.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelHead.Location = new System.Drawing.Point(130, 9);
+            this.labelHead.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelHead.Location = new System.Drawing.Point(108, 9);
             this.labelHead.Name = "labelHead";
-            this.labelHead.Size = new System.Drawing.Size(106, 21);
+            this.labelHead.Size = new System.Drawing.Size(128, 25);
             this.labelHead.TabIndex = 7;
             this.labelHead.Text = "Add new item";
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(112, 386);
+            this.btnAdd.Location = new System.Drawing.Point(112, 230);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(124, 43);
             this.btnAdd.TabIndex = 8;
-            this.btnAdd.Text = "button1";
+            this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // AddArtikulForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 450);
+            this.ClientSize = new System.Drawing.Size(345, 335);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.labelHead);
             this.Controls.Add(this.textPrice);

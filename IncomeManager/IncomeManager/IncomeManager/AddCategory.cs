@@ -20,12 +20,10 @@ namespace IncomeManager
             this.parrent = parrent;
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private async void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-
-
                 string categoryName = textName.Text;
 
                 if (string.IsNullOrEmpty(categoryName))
@@ -47,7 +45,7 @@ namespace IncomeManager
 
                 string inputModelJson = JsonConvert.SerializeObject(inputModel);
 
-                categoryService.AddCategory(inputModelJson);
+                await categoryService.AddCategoryAsync(inputModelJson);
                 MessageBox.Show("Successfully added new category");
                 Close();
 

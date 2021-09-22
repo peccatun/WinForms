@@ -7,7 +7,7 @@ namespace BLL.Services.Contracts
 {
     public interface ICategoryService
     {
-        Task AddCategory(string inputModel);
+        Task AddCategoryAsync(string inputModel);
 
         Task<string> GetCategoriesAsync();
     }

@@ -31,7 +31,6 @@ namespace IncomeManager
         {
             try
             {
-
                 string username = textUsername.Text;
 
                 if (string.IsNullOrEmpty(username))
@@ -55,6 +54,8 @@ namespace IncomeManager
                 await applicationUserService.InsertApplicationUserAsync(inputModelJson);
 
                 MessageBox.Show("Successfully added new user");
+                Close();
+
 
             }
             catch (Exception ex)

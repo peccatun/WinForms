@@ -1,1 +1,1 @@
-DSN=PetkoIT;Server=127.0.0.1;User=SYSDBA;Password=masterkey;Database=D:\IncomeManager\IncomeManagerDb.fdb;
+DSN=PetkoIT;Server=127.0.0.1;User=SYSDBA;Password=masterkey;Database=D:\IncomeManager\IncomeManagerDb.fdb;Charset=UNICODE_FSS;
